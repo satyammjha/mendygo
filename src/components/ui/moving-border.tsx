@@ -82,25 +82,44 @@ export const MovingBorder = ({
   ry?: string;
   [key: string]: any;
 }) => {
-  const pathRef = useRef<any>(null);
+  const pathRef = useRef<SVGRectElement | null>(null);
   const progress = useMotionValue<number>(0);
+  const lengthRef = useRef<number>(0); // to store totalLength after it's safe
+
+  const isReady = useRef(false);
+
+  // Set totalLength only after SVG is rendered
+  React.useEffect(() => {
+    if (pathRef.current) {
+      try {
+        lengthRef.current = pathRef.current.getTotalLength();
+        isReady.current = true;
+      } catch (e) {
+        console.error("SVG path not ready:", e);
+      }
+    }
+  }, []);
 
   useAnimationFrame((time) => {
-    const length = pathRef.current?.getTotalLength();
-    if (length) {
-      const pxPerMillisecond = length / duration;
-      progress.set((time * pxPerMillisecond) % length);
-    }
+    if (!isReady.current || !lengthRef.current) return;
+
+    const pxPerMillisecond = lengthRef.current / duration;
+    progress.set((time * pxPerMillisecond) % lengthRef.current);
   });
 
-  const x = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).x,
-  );
-  const y = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).y,
-  );
+  const x = useTransform(progress, (val) => {
+    if (isReady.current && pathRef.current) {
+      return pathRef.current.getPointAtLength(val).x;
+    }
+    return 0;
+  });
+
+  const y = useTransform(progress, (val) => {
+    if (isReady.current && pathRef.current) {
+      return pathRef.current.getPointAtLength(val).y;
+    }
+    return 0;
+  });
 
   const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
 
