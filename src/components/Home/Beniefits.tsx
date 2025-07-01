@@ -55,7 +55,7 @@ const benefits = [
 const Benefits = () => {
     return (
         <section className="bg-black py-20 px-4 text-white flex flex-col items-center">
-            <Badge variant="outline" className="p-2 text-white bg-[#abff02] border-white/20 mb-10">
+            <Badge variant="outline" className="p-2 text-black bg-[#abff02] border-white/20 mb-10">
                 Benefits
             </Badge>
             <h1 className={`font-bold text-2xl mb-8`}>

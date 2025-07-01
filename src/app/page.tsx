@@ -1,4 +1,6 @@
 "use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/components/common/Footer";
 import { MyNavbar } from "@/components/common/Navbar";
 import CountdownCard from "@/components/Home/CountdownCard";
@@ -13,65 +15,83 @@ import Step3 from "@/components/Home/Process/Step3";
 import Step4 from "@/components/Home/Process/Step4";
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { SignUpForm } from "@/components/Home/Form";
+import Preloader from "../components/common/Preloader";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
   return (
     <div className="relative overflow-hidden min-h-screen bg-black text-white">
-      <MyNavbar />
-      <Hero />
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <Preloader
+            key="preloader"
+            onLoadingComplete={handleLoadingComplete}
+            minimumDuration={2500}
+          />
+        )}
 
-      <div className="p-4">
-        <TextHoverEffect text="mendygo" />
-      </div>
-
-      <div className="px-4 py-16">
-        <CountdownCard />
-      </div>
-      <WavyBackground>
-        <div className="text-center max-w-2xl mx-auto px-4 space-y-4 mt-50">
-          <h2 className="text-2xl md:text-2xl font-semibold">
-            AI Solutions That Take Your Business to the Next Level
-          </h2>
-          <p className="text-base md:text-lg text-gray-300">
-            We design, develop, and implement automation tools that help you work smarter, not harder.
-          </p>
-        </div>
-      </WavyBackground >
-      <div className="relative mt-40 text-center px-4">
-        <Badge className="bg-[#abff02] text-black mx-auto mb-4">
-          <span className="text-sm font-semibold">Our Process</span>
-        </Badge>
-
-        <h1 className="text-2xl md:text-4xl font-bold mt-2">
-          Our Simple, Smart, and Scalable Process
-        </h1>
-        <p className="mt-2 text-gray-300 max-w-xl mx-auto">
-          We design, develop, and implement automation tools that help you work smarter, not harder.
-        </p>
-      </div>
-
-      <div className="mt-16 flex flex-col items-center px-4 space-y-10">
-
-        <div className="flex flex-col md:flex-row gap-6 w-full max-w-6xl justify-center">
-          <Step1 />
-          <Step2 />
-        </div>
-
-        <div className="flex flex-col md:flex-row gap-6 w-full max-w-6xl justify-center">
-          <Step3 />
-          <Step4 />
-        </div>
-      </div>
-
-      <div className="mt-12">
-        <Benefits />
-      </div>
-
-      <div className="mt-20">
-        <Faq />
-      </div>
-      <SignUpForm />
-      <Footer />
-    </div >
+        {!isLoading && (
+          <motion.div
+            key="main-site"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <MyNavbar />
+            <Hero />
+            <div className="p-4">
+              <TextHoverEffect text="mendygo" />
+            </div>
+            <div className="px-4 py-16">
+              <CountdownCard />
+            </div>
+            <WavyBackground>
+              <div className="text-center max-w-2xl mx-auto px-4 space-y-4 mt-50">
+                <h2 className="text-2xl md:text-2xl font-semibold">
+                  AI Solutions That Take Your Business to the Next Level
+                </h2>
+                <p className="text-base md:text-lg text-gray-300">
+                  We design, develop, and implement automation tools that help you work smarter, not harder.
+                </p>
+              </div>
+            </WavyBackground>
+            <div className="relative mt-40 text-center px-4">
+              <Badge className="bg-[#abff02] text-black mx-auto mb-4">
+                <span className="text-sm font-semibold">Our Process</span>
+              </Badge>
+              <h1 className="text-2xl md:text-4xl font-bold mt-2">
+                Our Simple, Smart, and Scalable Process
+              </h1>
+              <p className="mt-2 text-gray-300 max-w-xl mx-auto">
+                We design, develop, and implement automation tools that help you work smarter, not harder.
+              </p>
+            </div>
+            <div className="mt-16 flex flex-col items-center px-4 space-y-10">
+              <div className="flex flex-col md:flex-row gap-6 w-full max-w-6xl justify-center">
+                <Step1 />
+                <Step2 />
+              </div>
+              <div className="flex flex-col md:flex-row gap-6 w-full max-w-6xl justify-center">
+                <Step3 />
+                <Step4 />
+              </div>
+            </div>
+            <div className="mt-12">
+              <Benefits />
+            </div>
+            <div className="mt-20">
+              <Faq />
+            </div>
+            <SignUpForm />
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

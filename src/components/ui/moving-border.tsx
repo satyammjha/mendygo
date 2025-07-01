@@ -84,11 +84,9 @@ export const MovingBorder = ({
 }) => {
   const pathRef = useRef<SVGRectElement | null>(null);
   const progress = useMotionValue<number>(0);
-  const lengthRef = useRef<number>(0); // to store totalLength after it's safe
-
+  const lengthRef = useRef<number>(0); 
   const isReady = useRef(false);
 
-  // Set totalLength only after SVG is rendered
   React.useEffect(() => {
     if (pathRef.current) {
       try {

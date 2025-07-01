@@ -42,13 +42,13 @@ const CountdownCard = () => {
 
     return (
         <div className="relative w-full max-w-[90vw] sm:max-w-[500px] md:max-w-[80vh] mx-auto px-2 sm:px-4">
-            {/* Background glow circle */}
+       
             <div className="absolute inset-0 z-[-1] flex items-center justify-center">
                 <div className="w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] bg-gradient-to-br from-purple-500 via-white/10 to-purple-900 opacity-75 blur-3xl rounded-full"></div>
             </div>
 
             <Card className="relative bg-black text-white rounded-2xl shadow-2xl border border-white/10 p-4 sm:p-6 overflow-hidden">
-                {/* Pulsing border effects */}
+               
                 <div className="absolute inset-0 rounded-2xl overflow-hidden">
                     <div className="absolute inset-0 rounded-2xl">
                         <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 via-purple-400 to-transparent opacity-80 animate-pulse"></div>
@@ -57,7 +57,7 @@ const CountdownCard = () => {
                     </div>
                 </div>
 
-                {/* Gradient background */}
+             
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-black rounded-2xl"></div>
 
                 <div className="relative z-10">
@@ -78,7 +78,7 @@ const CountdownCard = () => {
                         Obtain early access and remain informed about release announcements.
                     </p>
 
-                    {/* Countdown timer */}
+                  
                     <div className="grid grid-cols-4 gap-1 sm:gap-2 mb-2 sm:mb-3 text-center">
                         {[
                             { label: "DAYS", value: timeLeft.days.toString().padStart(2, "0") },

@@ -16,7 +16,7 @@ const Faq = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
             >
-                <Badge variant="outline" className="p-2 text-white border-white/20 bg-[#abff02]">FAQs</Badge>
+                <Badge variant="outline" className="p-2 text-black border-white/20 bg-[#abff02]">FAQs</Badge>
             </motion.div>
 
             <motion.h1
