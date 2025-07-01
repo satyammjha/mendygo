@@ -1,11 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion, MotionValue, linear } from "framer-motion";
+import { motion, MotionValue } from "framer-motion";
 import React from "react";
 
 const transition = {
   duration: 0,
-  ease: linear,
 };
 
 export const GoogleGeminiEffect = ({

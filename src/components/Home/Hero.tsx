@@ -4,6 +4,8 @@ import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { GoogleGeminiEffect } from "../ui/google-gemini-effect";
+import Image from "next/image";
+import mendygo from '../../assets/mendygo white green wordmark.png'
 
 type Dot = { top: number; left: number };
 
@@ -20,7 +22,7 @@ export default function Hero() {
     const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2]);
     const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
     const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
-    
+
     useEffect(() => {
         const generated = Array.from({ length: 40 }, () => ({
             top: Math.random() * 100,
@@ -30,12 +32,12 @@ export default function Hero() {
     }, []);
 
     return (
-        <section 
+        <section
             ref={ref}
             className="relative flex min-h-[100vh] items-center justify-center px-4 overflow-hidden bg-black"
         >
             {/* Background GoogleGeminiEffect */}
-            <GoogleGeminiEffect
+            {/* <GoogleGeminiEffect
                 pathLengths={[
                     pathLengthFirst,
                     pathLengthSecond,
@@ -44,8 +46,8 @@ export default function Hero() {
                     pathLengthFifth,
                 ]}
                 className="opacity-40"
-            />
-            
+            /> */}
+
             {/* Animated Dots */}
             {dots.map((dot, i) => (
                 <motion.div
@@ -112,7 +114,7 @@ export default function Hero() {
                     transition={{ duration: 0.6, delay: 1.1, ease: "easeOut" }}
                     className="relative z-10 mx-auto mt-4 w-full max-w-5xl text-balance text-center text-lg font-sans font-semibold text-slate-300 md:text-2xl lg:text-6xl"
                 >
-                    {"Join the future with mendygo".split(" ").map((word, index) => (
+                    {"Join the future with".split("").map((word, index) => (
                         <motion.span
                             key={index}
                             initial={{ opacity: 0, y: 8 }}
@@ -122,14 +124,20 @@ export default function Hero() {
                                 delay: 1.2 + index * 0.08,
                                 ease: "easeOut",
                             }}
-                            className={`mr-2 inline-block ${word === "mendygo"
-                                ? "bg-[#abff02] text-black font-bold px-3 py-1 rounded-full shadow-sm italic"
-                                : ""
-                                }`}
+
                         >
                             {word}
                         </motion.span>
                     ))}
+                    <span className="inline-flex items-center align-middle ml-2">
+                        <Image
+                            src={mendygo}
+                            alt="mendygo"
+                            width={240}
+                            height={40}
+                            className="object-contain"
+                        />
+                    </span>
 
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
