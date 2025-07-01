@@ -12,6 +12,7 @@ import Step2 from "../components/Home/Process/Step2";
 import Step3 from "@/components/Home/Process/Step3";
 import Step4 from "@/components/Home/Process/Step4";
 import { WavyBackground } from "@/components/ui/wavy-background";
+import { SignUpForm } from "@/components/Home/Form";
 
 export default function Home() {
   return (
@@ -69,7 +70,7 @@ export default function Home() {
       <div className="mt-20">
         <Faq />
       </div>
-
+      <SignUpForm />
       <Footer />
     </div >
   );

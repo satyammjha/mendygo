@@ -11,16 +11,13 @@ import {
     MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState, useEffect } from "react";
+import { Button } from "../ui/moving-border";
 
 export function MyNavbar() {
     const navItems = [
         {
             name: "Features",
             link: "#features",
-        },
-        {
-            name: "Pricing",
-            link: "#pricing",
         },
         {
             name: "Contact",
@@ -49,11 +46,16 @@ export function MyNavbar() {
                 <NavBody>
                     <NavbarLogo />
                     <NavItems items={navItems} />
-                    <div className="flex items-center gap-4">
-                        <NavbarButton variant="secondary">Login</NavbarButton>
-                    </div>
+                    <Button
+                        borderRadius="1.5rem"
+                        duration={3500}
+                        borderClassName="bg-[radial-gradient(#abff02_40%,transparent_60%)] blur-sm opacity-80"
+                        containerClassName="h-12 w-32"
+                        className="bg-gray-100 text-black text-sm font-medium px-2 py-1 border border-[#abff02]/80 hover:bg-gray-200"
+                    >
+                        Join Now
+                    </Button>
                 </NavBody>
-
                 <MobileNav>
                     <MobileNavHeader>
                         <NavbarLogo />
@@ -85,7 +87,7 @@ export function MyNavbar() {
                                 variant="primary"
                                 className="w-full"
                             >
-                                Login
+                                Signup
                             </NavbarButton>
 
                         </div>

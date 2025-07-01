@@ -1,6 +1,6 @@
 const Step2 = () => {
     return (
-        <div className="bg-[#0a0a0a] text-white p-6 w-90 h-80 rounded-xl shadow-xl flex flex-col">
+        <div className="bg-[#0a0a0a] text-white p-6 w-[26rem] h-80 rounded-xl shadow-xl flex flex-col">
 
             <div className="flex flex-col mb-4">
                 <span className="bg-white/10 text-white px-2 py-1 text-xs rounded-md self-start mb-2">
