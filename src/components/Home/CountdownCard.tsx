@@ -130,4 +130,4 @@ const CountdownCard = () => {
     );
 };
 
-export default CountdownCard;
+export default CountdownCard
