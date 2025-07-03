@@ -9,8 +9,9 @@ import {
 import { MenuIcon, X as CrossIcon, HomeIcon } from "lucide-react";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.png"
 import mendygo from "../../assets/mendygo white green wordmark.png";
+import mendygoDark from "../../assets/mendygo black green wordmark.png"; // Add your dark mode wordmark here
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -111,7 +112,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-white transition duration-200 lg:flex",
+        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-black transition duration-200 lg:flex",
         className
       )}
     >
@@ -122,8 +123,9 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           onMouseEnter={() => setHovered(idx)}
           onMouseLeave={() => setHovered(null)}
           onClick={onItemClick}
-          className="relative px-4 py-2 text-white transition-colors duration-300"
+          className="relative px-4 py-2 text-black dark:text-white transition-colors duration-300"
         >
+          {/* Animated Background */}
           {hovered === idx && (
             <motion.div
               layoutId="hovered"
@@ -131,7 +133,14 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             />
           )}
-          <span className="relative z-20 transition-colors duration-300 text-white">
+
+          {/* Text with conditional color */}
+          <span
+            className={cn(
+              "relative z-20 transition-colors duration-300",
+              hovered === idx ? "text-black" : "text-black dark:text-white"
+            )}
+          >
             {item.name}
           </span>
         </a>
@@ -139,6 +148,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     </motion.div>
   );
 };
+
 
 export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
@@ -157,7 +167,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       transition={{ type: "spring", stiffness: 200, damping: 50 }}
       className={cn(
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        visible && "bg-white/80 dark:bg-neutral-950/80 border-b border-neutral-200/20 dark:border-white/10",
         className
       )}
     >
@@ -187,7 +197,7 @@ export const MobileNavMenu = ({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className={cn(
-          "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950",
+          "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white dark:bg-neutral-950 px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] border border-neutral-200 dark:border-neutral-800",
           className
         )}
       >
@@ -205,25 +215,42 @@ export const MobileNavToggle = ({
   onClick: () => void;
 }) => {
   return isOpen ? (
-    <HomeIcon className="text-black dark:text-white" onClick={onClick} />
+    <HomeIcon className="text-black dark:text-white cursor-pointer" onClick={onClick} />
   ) : (
-    <MenuIcon className="text-black dark:text-white" onClick={onClick} />
+    <MenuIcon className="text-black dark:text-white cursor-pointer" onClick={onClick} />
   );
 };
 
 export const NavbarLogo = () => (
   <a
-    href="#"
-    className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
+    href="/"
+    className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black dark:text-white"
   >
-    <Image src={logo} alt="logo" width={30} height={30} />
-    <Image
-      src={mendygo}
-      alt="mendygo"
-      width={120}
-      height={40}
-      className="object-contain h-8 w-auto"
-    />
+    <div className="relative w-[30px] h-[30px]">
+      <Image
+        src={logo}
+        alt="logo light mode"
+        width={30}
+        height={30}
+        className=""
+      />
+    </div>
+    <div className="relative h-8 w-auto">
+      <Image
+        src={mendygoDark}
+        alt="mendygo light mode"
+        width={120}
+        height={40}
+        className="object-contain h-8 w-auto dark:hidden"
+      />
+      <Image
+        src={mendygo}
+        alt="mendygo dark mode"
+        width={120}
+        height={40}
+        className="object-contain h-8 w-auto hidden dark:block"
+      />
+    </div>
   </a>
 );
 
@@ -242,15 +269,15 @@ export const NavbarButton = ({
   variant?: "primary" | "secondary" | "dark" | "gradient";
 } & (React.ComponentPropsWithoutRef<"a"> | React.ComponentPropsWithoutRef<"button">)) => {
   const baseStyles =
-    "px-4 py-2 rounded-md bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+    "px-4 py-2 rounded-md text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
   const variantStyles = {
     primary:
-      "shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-    secondary: "bg-transparent shadow-none dark:text-white",
-    dark: "bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06)]",
+      "bg-white dark:bg-neutral-900 text-black dark:text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] border border-neutral-200 dark:border-neutral-700",
+    secondary: "bg-transparent shadow-none text-black dark:text-white",
+    dark: "bg-black dark:bg-white text-white dark:text-black shadow-[0_0_24px_rgba(34,_42,_53,_0.06)]",
     gradient:
-      "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
+      "bg-gradient-to-b from-blue-500 to-blue-700 dark:from-blue-600 dark:to-blue-800 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
   };
 
   return (

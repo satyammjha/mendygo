@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Footer from "@/components/common/Footer";
-import { MyNavbar } from "@/components/common/Navbar";
 import CountdownCard from "@/components/Home/CountdownCard";
 import Faq from "@/components/Home/Faq";
 import Hero from "@/components/Home/Hero";
@@ -13,19 +11,18 @@ import Step1 from "@/components/Home/Process/Step1";
 import Step2 from "../components/Home/Process/Step2";
 import Step3 from "@/components/Home/Process/Step3";
 import Step4 from "@/components/Home/Process/Step4";
-import { WavyBackground } from "@/components/ui/wavy-background";
 import { SignUpForm } from "@/components/Home/Form";
 import Preloader from "../components/common/Preloader";
+import Timeline from "@/components/Home/Timeline";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
 
   return (
-    <div className="relative overflow-hidden min-h-screen bg-black text-white">
+    <div className="relative overflow-hidden min-h-screen dark:bg-black bg-white dark:text-white text-black">
       <AnimatePresence mode="wait">
         {isLoading && (
           <Preloader
@@ -42,7 +39,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <MyNavbar />
+
             <Hero />
             <div className="p-4">
               <TextHoverEffect text="mendygo" />
@@ -50,20 +47,26 @@ export default function Home() {
             <div className="px-4 py-16">
               <CountdownCard />
             </div>
-            <WavyBackground>
-              <div className="text-center max-w-2xl mx-auto px-4 space-y-4 mt-50">
-                <h2 className="text-2xl md:text-2xl font-semibold">
-                  AI Solutions That Take Your Business to the Next Level
-                </h2>
-                <p className="text-base md:text-lg text-gray-300">
-                  We design, develop, and implement automation tools that help you work smarter, not harder.
-                </p>
-              </div>
-            </WavyBackground>
+
+            <div className="text-center max-w-2xl mx-auto px-4 space-y-4 mt-50 mb-20">
+              <h2 className="text-2xl md:text-2xl font-semibold">
+                AI Solutions That Take Your Business to the Next Level
+              </h2>
+              <p className="text-base md:text-lg text-gray-300">
+                We design, develop, and implement automation tools that help you work smarter, not harder.
+              </p>
+            </div>
+
+            <Timeline />
+
             <div className="relative mt-40 text-center px-4">
-              <Badge className="bg-[#abff02] text-black mx-auto mb-4">
+              <Badge
+                className="backdrop-blur-md bg-[#abff02]/20 border border-white/20 text-black dark:text-white mx-auto mb-4 hover:shadow-lg hover:shadow-[#abff02]/30 transition
+"
+              >
                 <span className="text-sm font-semibold">Our Process</span>
               </Badge>
+
               <h1 className="text-2xl md:text-4xl font-bold mt-2">
                 Our Simple, Smart, and Scalable Process
               </h1>
@@ -88,7 +91,7 @@ export default function Home() {
               <Faq />
             </div>
             <SignUpForm />
-            <Footer />
+
           </motion.div>
         )}
       </AnimatePresence>

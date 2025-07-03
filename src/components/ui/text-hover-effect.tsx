@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { useTheme } from "next-themes";
 
 export const TextHoverEffect = ({
   text,
@@ -8,12 +9,12 @@ export const TextHoverEffect = ({
 }: {
   text: string;
   duration?: number;
-  automatic?: boolean;
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
   const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (svgRef.current && cursor.x !== null && cursor.y !== null) {
@@ -26,6 +27,9 @@ export const TextHoverEffect = ({
       });
     }
   }, [cursor]);
+
+  const outlineStroke = theme === "light" ? "#1f2937" : "#e5e7eb"; 
+  const dropShadow = theme === "light" ? "drop-shadow(1px 1px 1px rgba(0,0,0,0.2))" : undefined;
 
   return (
     <svg
@@ -65,18 +69,11 @@ export const TextHoverEffect = ({
           initial={{ cx: "50%", cy: "50%" }}
           animate={maskPosition}
           transition={{ duration: duration ?? 0, ease: "easeOut" }}
-
-        // example for a smoother animation below
-
-        //   transition={{
-        //     type: "spring",
-        //     stiffness: 300,
-        //     damping: 50,
-        //   }}
         >
           <stop offset="0%" stopColor="white" />
           <stop offset="100%" stopColor="black" />
         </motion.radialGradient>
+
         <mask id="textMask">
           <rect
             x="0"
@@ -87,24 +84,30 @@ export const TextHoverEffect = ({
           />
         </mask>
       </defs>
+
       <text
         x="50%"
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-7xl font-bold dark:stroke-neutral-800"
-        style={{ opacity: hovered ? 0.7 : 0 }}
+        className="fill-transparent font-[helvetica] text-7xl font-bold"
+        stroke={outlineStroke}
+        style={{
+          opacity: hovered ? 0.7 : 0,
+          filter: dropShadow,
+        }}
       >
         {text}
       </text>
+
       <motion.text
         x="50%"
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-7xl font-bold dark:stroke-neutral-800"
+        className="fill-transparent stroke-neutral-200 dark:stroke-neutral-800 font-[helvetica] text-7xl font-bold"
         initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
         animate={{
           strokeDashoffset: 0,
@@ -117,15 +120,19 @@ export const TextHoverEffect = ({
       >
         {text}
       </motion.text>
+
       <text
         x="50%"
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
         stroke="url(#textGradient)"
-        strokeWidth="0.3"
+        strokeWidth="0.6" 
         mask="url(#textMask)"
         className="fill-transparent font-[helvetica] text-7xl font-bold"
+        style={{
+          filter: dropShadow,
+        }}
       >
         {text}
       </text>

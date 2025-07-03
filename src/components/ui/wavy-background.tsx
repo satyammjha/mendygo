@@ -35,6 +35,31 @@ export const WavyBackground = ({
     ctx: any,
     canvas: any;
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const checkDarkMode = () => {
+      if (typeof window !== "undefined") {
+        const isDark = document.documentElement.classList.contains('dark');
+        setIsDarkMode(isDark);
+      }
+    };
+
+    checkDarkMode();
+
+    const observer = new MutationObserver(checkDarkMode);
+    if (typeof window !== "undefined") {
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
+
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, []);
+
   const getSpeed = () => {
     switch (speed) {
       case "slow":
@@ -48,26 +73,43 @@ export const WavyBackground = ({
 
   const init = () => {
     canvas = canvasRef.current;
+    if (!canvas) return;
+
     ctx = canvas.getContext("2d");
     w = ctx.canvas.width = window.innerWidth;
     h = ctx.canvas.height = window.innerHeight;
     ctx.filter = `blur(${blur}px)`;
     nt = 0;
+
     window.onresize = function () {
-      w = ctx.canvas.width = window.innerWidth;
-      h = ctx.canvas.height = window.innerHeight;
-      ctx.filter = `blur(${blur}px)`;
+      if (ctx) {
+        w = ctx.canvas.width = window.innerWidth;
+        h = ctx.canvas.height = window.innerHeight;
+        ctx.filter = `blur(${blur}px)`;
+      }
     };
     render();
   };
 
-  const waveColors = colors ?? [
-    "#38bdf8",
-    "#818cf8",
-    "#c084fc",
-    "#e879f9",
-    "#22d3ee",
+  const darkModeColors = [
+    "#38bdf8", // sky blue
+    "#818cf8", // indigo
+    "#c084fc", // purple
+    "#f472b6", // pink
+    "#34d399", // emerald
   ];
+
+  const lightModeColors = [
+    "#0ea5e9", // sky-500
+    "#6366f1", // indigo-500
+    "#8b5cf6", // violet-500
+    "#ec4899", // pink-500
+    "#10b981", // emerald-500
+  ];
+
+
+  const waveColors = colors ?? (isDarkMode ? darkModeColors : lightModeColors);
+
   const drawWave = (n: number) => {
     nt += getSpeed();
     for (i = 0; i < n; i++) {
@@ -76,7 +118,7 @@ export const WavyBackground = ({
       ctx.strokeStyle = waveColors[i % waveColors.length];
       for (x = 0; x < w; x += 5) {
         var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
+        ctx.lineTo(x, y + h * 0.5);
       }
       ctx.stroke();
       ctx.closePath();
@@ -85,23 +127,40 @@ export const WavyBackground = ({
 
   let animationId: number;
   const render = () => {
-    ctx.fillStyle = backgroundFill || "black";
-    ctx.globalAlpha = waveOpacity || 0.5;
+    if (!ctx) return;
+
+    // Clear the canvas first
+    ctx.clearRect(0, 0, w, h);
+
+    // Set background - pure white for light mode, pure black for dark mode
+    ctx.fillStyle = backgroundFill || (isDarkMode ? "#000000" : "#ffffff");
+    ctx.globalAlpha = 1;
     ctx.fillRect(0, 0, w, h);
+
+    // Set wave opacity based on theme
+    ctx.globalAlpha = isDarkMode ? (waveOpacity || 0.6) : (waveOpacity || 0.4);
+
     drawWave(5);
     animationId = requestAnimationFrame(render);
   };
 
   useEffect(() => {
-    init();
+    const timeoutId = setTimeout(() => {
+      if (canvasRef.current) {
+        init();
+      }
+    }, 100); // Small delay to ensure DOM is ready
+
     return () => {
-      cancelAnimationFrame(animationId);
+      clearTimeout(timeoutId);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
     };
-  }, []);
+  }, [isDarkMode]); // Re-initialize when theme changes
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
-    // I'm sorry but i have got to support it on safari.
     setIsSafari(
       typeof window !== "undefined" &&
       navigator.userAgent.includes("Safari") &&
@@ -112,9 +171,11 @@ export const WavyBackground = ({
   return (
     <div
       className={cn(
-        "h-screen flex flex-col items-center justify-center",
+        "h-screen flex flex-col items-center justify-center transition-colors duration-300",
+        isDarkMode ? "bg-black" : "bg-white",
         containerClassName
       )}
+      {...props}
     >
       <canvas
         className="absolute inset-0 z-0"
@@ -123,8 +184,8 @@ export const WavyBackground = ({
         style={{
           ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
         }}
-      ></canvas>
-      <div className={cn("relative z-10", className)} {...props}>
+      />
+      <div className={cn("relative z-10 w-full", className)}>
         {children}
       </div>
     </div>

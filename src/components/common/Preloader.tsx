@@ -144,41 +144,6 @@ export default function Preloader({
                     />
                 </motion.div>
             </motion.div>
-
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="absolute bottom-1/3 text-center"
-            >
-                <motion.p
-                    className="text-white/70 text-sm font-medium tracking-wider mb-2"
-                    animate={{ opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    LOADING... {Math.round(loadingProgress)}%
-                </motion.p>
-
-                <div className="relative w-[200px] h-0.5 bg-white/10 rounded-full mx-auto">
-                    <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${loadingProgress}%` }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="h-full bg-gradient-to-r from-[#abff02] to-[#7acc00] rounded-full"
-                    />
-
-                    <motion.div
-                        animate={{
-                            opacity: [0.5, 1, 0.5],
-                            x: [`${loadingProgress - 10}%`, `${loadingProgress}%`, `${loadingProgress - 10}%`],
-                        }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute top-0 w-4 h-0.5 bg-white rounded-full blur-sm"
-                        style={{ left: `${Math.max(0, loadingProgress - 2)}%` }}
-                    />
-                </div>
-            </motion.div>
-
             {particles.map((particle, i) => (
                 <motion.div
                     key={i}

@@ -63,50 +63,39 @@ const Step4 = () => {
         }
     };
 
-    const getProgressBar = (index: number) => {
-        if (index === 1 && animationStates[1]) {
-            return (
-                <div className="w-full h-1 bg-white/10 rounded-full mt-1 overflow-hidden">
-                    <div className="h-full bg-[#abff02] rounded-full animate-[progress_2s_ease-in-out_infinite]"></div>
-                </div>
-            );
-        }
-        return null;
-    };
 
     return (
-        <div className="bg-[#0a0a0a] text-white p-6 w-[26rem] h-80 rounded-xl shadow-xl flex flex-col">
+        <div className="bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 dark:border-white/10 text-gray-900 dark:text-white p-6 w-[26rem] h-80 rounded-xl shadow-2xl shadow-black/10 dark:shadow-black/30 flex flex-col">
             <div className="flex flex-col mb-6">
-                <span className="bg-white/10 text-white px-2 py-1 text-xs rounded-md self-start mb-2">
+                <span className="bg-white/20 dark:bg-white/10 text-gray-900 dark:text-white px-2 py-1 text-xs rounded-md self-start mb-2 backdrop-blur-sm">
                     Step 4
                 </span>
-                <h2 className="text-xl font-bold mb-1">Optimization</h2>
-                <p className="text-gray-300 text-xs leading-tight">
+                <h2 className="text-xl font-bold mb-1 text-gray-900 dark:text-white">Optimization</h2>
+                <p className="text-gray-600 dark:text-gray-300 text-xs leading-tight">
                     Continuous monitoring and improvement.
                 </p>
             </div>
 
             <div className="flex-1 space-y-1">
                 {systems.map((system, i) => (
-                    <div key={i} className="border border-white/30 rounded-md p-1 hover:bg-white/5 transition-all duration-300 hover:border-[#abff02]/30">
+                    <div key={i} className="border border-gray-300/30 dark:border-white/30 rounded-md p-1 hover:bg-white/10 dark:hover:bg-white/5 transition-all duration-300 hover:border-[#abff02]/30 backdrop-blur-sm bg-white/5 dark:bg-black/10 shadow-lg">
                         <div className="flex items-center justify-between">
                             <div className="flex-1">
-                                <p className="text-sm font-medium">{system.name} system</p>
-                                <p className={`text-xs transition-all duration-300 ${i === 1 && animationStates[1] ? 'text-[#abff02]' : 'text-white/70'
+                                <p className="text-sm font-medium text-gray-900 dark:text-white">{system.name} system</p>
+                                <p className={`text-xs transition-all duration-300 ${i === 1 && animationStates[1] ? 'text-[#abff02] drop-shadow-sm' : 'text-gray-600 dark:text-white/70'
                                     }`}>
                                     {getStatusText(i)}
                                 </p>
-                                {getProgressBar(i)}
                             </div>
                             <div className="ml-4 relative">
-                                <span className={`text-lg text-[#abff02] transition-all duration-300 inline-block ${i === 0 && animationStates[0] ? 'animate-spin' : ''
+                                <span className={`text-lg text-[#abff02] transition-all duration-300 inline-block drop-shadow-sm ${i === 0 && animationStates[0] ? 'animate-spin' : ''
                                     } ${i === 1 && animationStates[1] ? 'animate-bounce' : ''
                                     } ${i === 2 ? 'hover:scale-110' : ''
                                     }`}>
                                     {system.status}
                                 </span>
                                 {i === 0 && (
-                                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#abff02] rounded-full animate-pulse"></div>
+                                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#abff02] rounded-full animate-pulse shadow-sm shadow-[#abff02]/50"></div>
                                 )}
                             </div>
                         </div>

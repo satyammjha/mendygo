@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Figtree } from "next/font/google"
+import { ThemeProvider } from "@/context/ThemeContext";
+import { MyNavbar } from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -25,13 +27,13 @@ export const metadata: Metadata = {
   description: "AI that adapts – Lead generation for modern businesses.",
   icons: {
     icon: [
-      { url: "/favicon.ico", type: "image/x-icon" },                     
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },  
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },  
+      { url: "/favicon.ico", type: "image/x-icon" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
-    apple: "/apple-touch-icon.png",                                      
+    apple: "/apple-touch-icon.png",
     other: [
-      { rel: "manifest", url: "/site.webmanifest" },                
+      { rel: "manifest", url: "/site.webmanifest" },
     ],
   },
 };
@@ -45,7 +47,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${figtree.variable} antialiased`}>
-        {children}
+        <ThemeProvider>
+          <MyNavbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

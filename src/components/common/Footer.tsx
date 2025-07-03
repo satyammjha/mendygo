@@ -1,3 +1,4 @@
+"use client"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
@@ -6,11 +7,12 @@ import Image from "next/image";
 import logo from "@/assets/logo.png";
 import { motion } from "framer-motion";
 import mendygo from "../../assets/mendygo white green wordmark.png"
+import mendygoDark from "../../assets/mendygo black green wordmark.png"
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-black text-white relative overflow-hidden border-t border-white/10">
-           
+        <footer className="w-full bg-white dark:bg-black text-black dark:text-white relative overflow-hidden border-t border-black/10 dark:border-white/10">
+
             <motion.div
                 initial={{ opacity: 0, scale: 1 }}
                 animate={{ opacity: 0.08, scale: 1.3 }}
@@ -19,32 +21,39 @@ export default function Footer() {
             />
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-12 lg:pb-16">
-            
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-                   
+
                     <div className="sm:col-span-2 lg:col-span-1 space-y-4 sm:space-y-6">
-              
+
                         <div className="flex items-center gap-2 sm:gap-3">
+
                             <Image
                                 src={logo}
                                 alt="mendygo"
                                 className="h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0"
                             />
+
+                            <Image
+                                src={mendygoDark}
+                                alt="mendygo"
+                                className="h-auto w-24 sm:w-32 md:w-36 max-w-full block dark:hidden"
+                            />
                             <Image
                                 src={mendygo}
                                 alt="mendygo"
-                                className="h-auto w-24 sm:w-32 md:w-36 max-w-full"
+                                className="h-auto w-24 sm:w-32 md:w-36 max-w-full hidden dark:block"
                             />
                         </div>
 
                         <div className="space-y-3 sm:space-y-4">
-                            <p className="text-sm sm:text-base text-gray-300">Join our newsletter</p>
+                            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">Join our newsletter</p>
 
                             <div className="hidden sm:flex items-center space-x-2">
                                 <Input
                                     type="email"
                                     placeholder="name@mendygo.com"
-                                    className="bg-white/10 border border-white/20 text-white placeholder:text-gray-400 text-sm"
+                                    className="bg-black/10 dark:bg-white/10 border border-black/20 dark:border-white/20 text-black dark:text-white placeholder:text-gray-600 dark:placeholder:text-gray-400 text-sm"
                                 />
                                 <Button className="bg-[#abff02] hover:bg-[#abff029f] text-black cursor-pointer whitespace-nowrap px-3 py-2">
                                     <Mail className="w-4 h-4 mr-1" />
@@ -56,7 +65,7 @@ export default function Footer() {
                                 <Input
                                     type="email"
                                     placeholder="name@mendygo.com"
-                                    className="bg-white/10 border border-white/20 text-white placeholder:text-gray-400 text-sm w-full"
+                                    className="bg-black/10 dark:bg-white/10 border border-black/20 dark:border-white/20 text-black dark:text-white placeholder:text-gray-600 dark:placeholder:text-gray-400 text-sm w-full"
                                 />
                                 <Button className="bg-[#abff02] hover:bg-[#abff029f] text-black cursor-pointer w-full">
                                     <Mail className="w-4 h-4 mr-2" />
@@ -67,8 +76,8 @@ export default function Footer() {
                     </div>
 
                     <div className="space-y-3 sm:space-y-4">
-                        <h4 className="font-semibold text-white text-sm sm:text-base">Links</h4>
-                        <ul className="text-gray-400 space-y-2 text-sm">
+                        <h4 className="font-semibold text-black dark:text-white text-sm sm:text-base">Links</h4>
+                        <ul className="text-gray-600 dark:text-gray-400 space-y-2 text-sm">
                             <li>
                                 <Link
                                     href="/services"
@@ -113,8 +122,8 @@ export default function Footer() {
                     </div>
 
                     <div className="space-y-3 sm:space-y-4">
-                        <h4 className="font-semibold text-white text-sm sm:text-base">Pages</h4>
-                        <ul className="text-gray-400 space-y-2 text-sm">
+                        <h4 className="font-semibold text-black dark:text-white text-sm sm:text-base">Pages</h4>
+                        <ul className="text-gray-600 dark:text-gray-400 space-y-2 text-sm">
                             <li>
                                 <Link
                                     href="/"
@@ -159,8 +168,8 @@ export default function Footer() {
                     </div>
 
                     <div className="space-y-3 sm:space-y-4">
-                        <h4 className="font-semibold text-white text-sm sm:text-base">Socials</h4>
-                        <ul className="text-gray-400 space-y-2 text-sm">
+                        <h4 className="font-semibold text-black dark:text-white text-sm sm:text-base">Socials</h4>
+                        <ul className="text-gray-600 dark:text-gray-400 space-y-2 text-sm">
                             <li>
                                 <a
                                     href="https://instagram.com"
@@ -208,7 +217,7 @@ export default function Footer() {
                 <div className="mt-8 sm:mt-12 lg:mt-16"></div>
             </div>
 
-            <div className="border-t border-white/10 text-center text-xs sm:text-sm text-gray-500 py-3 sm:py-4 px-4">
+            <div className="border-t border-black/10 dark:border-white/10 text-center text-xs sm:text-sm text-gray-600 dark:text-gray-500 py-3 sm:py-4 px-4">
                 <p>© Mendygo 2025. All rights reserved.</p>
             </div>
         </footer>

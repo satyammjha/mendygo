@@ -10,48 +10,100 @@ import {
     MobileNavToggle,
     MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import { useState, useEffect } from "react";
-import { Button } from "../ui/button";
+import { Sun, Moon } from "lucide-react";
+import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 export function MyNavbar() {
     const navItems = [
-        {
-            name: "Features",
-            link: "#features",
-        },
-        {
-            name: "Contact",
-            link: "#contact",
-        },
+        { name: "Features", link: "#features" },
+        { name: "Career", link: "/career" },
+        { name: "Contact", link: "/contact" },
     ];
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(false);
-    useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const { toggleTheme } = useTheme();
 
-        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-            setIsDarkMode(true);
-            document.documentElement.classList.add('dark');
-        } else {
-            setIsDarkMode(false);
-            document.documentElement.classList.remove('dark');
-        }
-    }, []);
+    const ThemeToggleButton = ({ className = "" }: { className?: string }) => {
+        return (
+            <button
+                onClick={toggleTheme}
+                aria-label="Toggle dark mode"
+                className={`
+                    cursor-pointer
+                    relative h-8 w-16 rounded-full
+                    bg-gray-200 dark:bg-gray-700
+                    border-2 border-gray-300 dark:border-gray-600
+                    flex items-center
+                    transition-all duration-300 ease-in-out
+                    hover:bg-gray-300 dark:hover:bg-gray-600
+                    hover:border-gray-400 dark:hover:border-gray-500
+                    focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-black
+                    shadow-inner
+                    ${className}
+                `}
+            >
+                <div className="absolute inset-0 flex items-center justify-between px-1.5">
+
+                    <Sun
+                        size={12}
+                        className="text-yellow-500 dark:text-yellow-400 transition-all duration-300 
+                                 opacity-100 dark:opacity-40 transform scale-100 dark:scale-90"
+                    />
+
+                    <Moon
+                        size={12}
+                        className="text-gray-400 dark:text-blue-300 transition-all duration-300 
+                                 opacity-40 dark:opacity-100 transform scale-90 dark:scale-100"
+                    />
+                </div>
+
+                <div
+                    className={`
+                        relative h-6 w-6 rounded-full
+                        bg-white dark:bg-gray-800
+                        border-2 border-gray-300 dark:border-gray-500
+                        shadow-lg dark:shadow-xl
+                        transform transition-all duration-300 ease-in-out
+                        translate-x-0.5 dark:translate-x-8
+                        flex items-center justify-center
+                        ring-0 hover:ring-1 hover:ring-blue-300 dark:hover:ring-blue-600
+                    `}
+                >
+                    <div className="relative w-3 h-3 flex items-center justify-center">
+                        <Sun
+                            size={10}
+                            className="text-yellow-500 absolute transition-all duration-300
+                                     opacity-100 dark:opacity-0 transform rotate-0 dark:rotate-180 scale-100 dark:scale-75"
+                        />
+                        <Moon
+                            size={10}
+                            className="text-blue-400 absolute transition-all duration-300
+                                     opacity-0 dark:opacity-100 transform rotate-180 dark:rotate-0 scale-75 dark:scale-100"
+                        />
+                    </div>
+                </div>
+            </button>
+        );
+    };
 
     return (
-        <div className="relative w-full border-b-2">
+        <div className="relative w-full border-b-2 dark:border-gray-700">
             <Navbar>
                 <NavBody>
                     <NavbarLogo />
                     <NavItems items={navItems} />
-                    <Button>Join now</Button>
+                    <div className="flex items-center gap-2">
+                        <ThemeToggleButton />
+                    </div>
                 </NavBody>
+
                 <MobileNav>
                     <MobileNavHeader>
                         <NavbarLogo />
                         <div className="flex items-center gap-2">
+                            <ThemeToggleButton className="sm:hidden" />
+
                             <MobileNavToggle
                                 isOpen={isMobileMenuOpen}
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -68,12 +120,13 @@ export function MyNavbar() {
                                 key={`mobile-link-${idx}`}
                                 href={item.link}
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="relative text-white dark:text-neutral-300"
+                                className="relative text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                             >
-                                <span className="block text-white">{item.name}</span>
+                                <span>{item.name}</span>
                             </a>
                         ))}
-                        <div className="flex w-full flex-col gap-4">
+
+                        <div className="flex w-full flex-col gap-4 mt-4">
                             <NavbarButton
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 variant="primary"
@@ -81,7 +134,6 @@ export function MyNavbar() {
                             >
                                 Signup
                             </NavbarButton>
-
                         </div>
                     </MobileNavMenu>
                 </MobileNav>
