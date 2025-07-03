@@ -28,7 +28,7 @@ export const TextHoverEffect = ({
     }
   }, [cursor]);
 
-  const outlineStroke = theme === "light" ? "#1f2937" : "#e5e7eb"; 
+  const outlineStroke = theme === "light" ? "#1f2937" : "#e5e7eb";
   const dropShadow = theme === "light" ? "drop-shadow(1px 1px 1px rgba(0,0,0,0.2))" : undefined;
 
   return (
@@ -127,7 +127,7 @@ export const TextHoverEffect = ({
         textAnchor="middle"
         dominantBaseline="middle"
         stroke="url(#textGradient)"
-        strokeWidth="0.6" 
+        strokeWidth="0.6"
         mask="url(#textMask)"
         className="fill-transparent font-[helvetica] text-7xl font-bold"
         style={{
