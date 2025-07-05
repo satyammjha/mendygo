@@ -168,7 +168,7 @@ export default function Footer() {
                             </li>
                             <li>
                                 <Link
-                                    href="/about"
+                                    href="/aboutus"
                                     className="hover:text-[#abff02] transition-colors duration-200 block py-1"
                                 >
                                     About
@@ -190,14 +190,7 @@ export default function Footer() {
                                     Contact
                                 </Link>
                             </li>
-                            <li>
-                                <Link
-                                    href="/404"
-                                    className="hover:text-[#abff02] transition-colors duration-200 block py-1"
-                                >
-                                    404
-                                </Link>
-                            </li>
+                 
                         </ul>
                     </div>
 
@@ -206,7 +199,7 @@ export default function Footer() {
                         <ul className="text-gray-600 dark:text-gray-400 space-y-2 text-sm">
                             <li>
                                 <a
-                                    href="https://instagram.com"
+                                    href="https://www.instagram.com/mendygo.ai?igsh=MTl6d2RuM2t6b2s5Mw%3D%3D&utm_source=qr"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:text-[#abff02] transition-colors duration-200 block py-1"
@@ -226,7 +219,7 @@ export default function Footer() {
                             </li>
                             <li>
                                 <a
-                                    href="https://linkedin.com"
+                                    href="https://www.linkedin.com/company/mendygo/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:text-[#abff02] transition-colors duration-200 block py-1"
@@ -236,12 +229,12 @@ export default function Footer() {
                             </li>
                             <li>
                                 <a
-                                    href="https://twitter.com"
+                                    href="https://x.com/MendygoSocial"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:text-[#abff02] transition-colors duration-200 block py-1"
                                 >
-                                    Twitter
+                                    X
                                 </a>
                             </li>
                         </ul>

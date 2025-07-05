@@ -13,6 +13,7 @@ import {
     ArrowRight,
 } from 'lucide-react';
 import logo from '../../assets/logo.png';
+import VennDiagram from './VennDiagram';
 
 const Timeline = () => {
     const [mounted, setMounted] = useState(false);
@@ -73,57 +74,7 @@ const Timeline = () => {
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    <div className="relative flex items-center justify-center">
-                        <div className="relative w-80 h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px]">
-                            <div className="absolute inset-0 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-2xl border border-white/30 dark:border-white/10 shadow-lg shadow-black/10 dark:shadow-black/20">
-                                <div className="w-full h-full rounded-full flex items-center justify-center">
-                                    <Image
-                                        src={logo}
-                                        alt="MENDYGO"
-                                        width={100}
-                                        height={100}
-                                        className="object-contain"
-                                    />
-                                </div>
-                            </div>
-
-                            {steps.map((step, index) => {
-                                const IconComponent = step.icon;
-                                const angle = (index * 60) - 90;
-                                const radius = 200;
-                                const x = Math.cos(angle * Math.PI / 180) * radius;
-                                const y = Math.sin(angle * Math.PI / 180) * radius;
-
-                                return (
-                                    <div
-                                        key={step.slug}
-                                        className={`absolute transition-all duration-1000 ${mounted ? 'opacity-100' : 'opacity-0'}`}
-                                        style={{
-                                            left: `calc(50% + ${x}px)`,
-                                            top: `calc(50% + ${y}px)`,
-                                            transform: 'translate(-50%, -50%)',
-                                            animationDelay: `${0.3 + (0.2 * index)}s`
-                                        }}
-                                    >
-                                        <div className="bg-white/20 dark:bg-black/20 backdrop-blur-lg border border-white/30 dark:border-white/10 rounded-2xl p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                                            <div className="flex items-center space-x-2">
-                                                <div className="w-8 h-8 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center">
-                                                    <IconComponent className="w-4 h-4 text-black dark:text-white" />
-                                                </div>
-                                                <span className="text-black dark:text-white font-medium text-sm hidden sm:inline">
-                                                    {step.title}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-
-                            <div className="absolute inset-0 rounded-full border-2 border-dashed border-white/10 dark:border-white/20 animate-spin" style={{ animationDuration: '20s' }}></div>
-                            <div className="absolute inset-4 rounded-full border border-white/10 dark:border-white/20"></div>
-                            <div className="absolute inset-8 rounded-full border border-white/5 dark:border-white/10"></div>
-                        </div>
-                    </div>
+         <VennDiagram/>
 
                     <div className="grid grid-cols-2 gap-4 md:gap-6">
                         {steps.map((step, index) => {

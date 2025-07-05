@@ -182,7 +182,7 @@ export default function Hero() {
                                     alt="Mendygo Logo"
                                     width={200}
                                     height={50}
-                                    className="object-contain w-auto h-6 sm:h-8 md:h-10 lg:h-12 xl:h-14 drop-shadow-sm block mt-4 dark:hidden"
+                                    className="object-contain w-auto h-8 sm:h-8 md:h-10 lg:h-12 xl:h-14 drop-shadow-sm block mt-4 dark:hidden"
                                     priority
                                 />
                                 <Image
@@ -190,7 +190,7 @@ export default function Hero() {
                                     alt="Mendygo Logo"
                                     width={200}
                                     height={50}
-                                    className="object-contain w-auto h-6 sm:h-8 md:h-10 lg:h-12 xl:h-14 drop-shadow-sm hidden mt-4 dark:block"
+                                    className="object-contain w-auto h-14 sm:h-8 md:h-10 lg:h-12 xl:h-16 drop-shadow-sm hidden mt-4 dark:block"
                                     priority
                                 />
                             </motion.span>
