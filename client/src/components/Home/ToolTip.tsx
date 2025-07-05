@@ -30,8 +30,8 @@ export default function Tooltip() {
         <div className="flex md:flex-row items-center justify-center gap-3 w-full text-center md:text-left text-sm text-gray-300 mt-4">
             <AnimatedTooltip items={people} />
 
-            <p className="text-gray-300 ml-10">
-                Join <span className="text-white font-semibold">1000+</span> others on the waitlist
+            <p className="dark:text-gray-300 text-black ml-10">
+                Join <span className="text-black dark:text-white font-semibold">1000+</span> others on the waitlist
             </p>
         </div>
     );

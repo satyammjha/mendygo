@@ -98,14 +98,15 @@ export const WavyBackground = ({
     "#f472b6", // pink
     "#34d399", // emerald
   ];
-
   const lightModeColors = [
-    "#0ea5e9", // sky-500
-    "#6366f1", // indigo-500
-    "#8b5cf6", // violet-500
-    "#ec4899", // pink-500
-    "#10b981", // emerald-500
+    "#ff1a1a", // vivid red
+    "#ff0066", // neon pink
+    "#9900ff", // electric purple
+    "#0033ff", // rich blue
+    "#00cccc", // aqua cyan
   ];
+
+
 
 
   const waveColors = colors ?? (isDarkMode ? darkModeColors : lightModeColors);

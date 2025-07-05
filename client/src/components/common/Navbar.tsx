@@ -16,9 +16,9 @@ import { useTheme } from "@/context/ThemeContext";
 
 export function MyNavbar() {
     const navItems = [
-        { name: "Features", link: "#features" },
         { name: "Career", link: "/career" },
         { name: "Contact", link: "/contact" },
+        { name: "Blog", link: "/blog" },
     ];
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

@@ -1,4 +1,5 @@
 "use client"
+import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
@@ -10,6 +11,37 @@ import mendygo from "../../assets/mendygo white green wordmark.png"
 import mendygoDark from "../../assets/mendygo black green wordmark.png"
 
 export default function Footer() {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+        e.preventDefault();
+
+        const emailInput = (e.currentTarget.elements.namedItem("email") as HTMLInputElement).value;
+
+        fetch("https://m.satyamjha.me/contact/create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: "Newsletter Subscriber",
+                email: emailInput,
+                subject: "Newsletter Signup",
+                phoneNumber: "",
+                message: "User subscribed via newsletter form",
+            }),
+        })
+            .then((res) => {
+                if (!res.ok) throw new Error("Network response was not ok");
+                return res.json();
+            })
+            .then(() => {
+                alert("Successfully subscribed to newsletter!");
+            })
+            .catch((err) => {
+                console.error("Subscription error:", err);
+                alert("Subscription failed. Please try again.");
+            });
+    }
+
     return (
         <footer className="w-full bg-white dark:bg-black text-black dark:text-white relative overflow-hidden border-t border-black/10 dark:border-white/10">
 
@@ -49,17 +81,19 @@ export default function Footer() {
                         <div className="space-y-3 sm:space-y-4">
                             <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">Join our newsletter</p>
 
-                            <div className="hidden sm:flex items-center space-x-2">
+                            <form className="hidden sm:flex items-center space-x-2" onSubmit={handleSubmit}>
                                 <Input
                                     type="email"
+                                    name="email"
                                     placeholder="name@mendygo.com"
-                                    className="bg-black/10 dark:bg-white/10 border border-black/20 dark:border-white/20 text-black dark:text-white placeholder:text-gray-600 dark:placeholder:text-gray-400 text-sm"
+                                    className="bg-black/10 dark:bg:white/10 border border-black/20 dark:border-white/20 text-black dark:text-white placeholder:text-gray-600 dark:placeholder:text-gray-400 text-sm"
+                                    required
                                 />
-                                <Button className="bg-[#abff02] hover:bg-[#abff029f] text-black cursor-pointer whitespace-nowrap px-3 py-2">
+                                <Button type="submit" className="bg-[#abff02] hover:bg-[#abff029f] text-black cursor-pointer whitespace-nowrap px-3 py-2 ">
                                     <Mail className="w-4 h-4 mr-1" />
                                     Register
                                 </Button>
-                            </div>
+                            </form>
 
                             <div className="sm:hidden space-y-2">
                                 <Input
