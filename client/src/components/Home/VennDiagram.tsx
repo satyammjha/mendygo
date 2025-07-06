@@ -9,6 +9,7 @@ import {
     LineChart,
     Wand2,
 } from "lucide-react";
+import logo from '../../assets/logo.png'
 
 const icons = [
     PlugZap,
@@ -25,7 +26,7 @@ export default function VennDiagram() {
     const center = { cx: 350, cy: 350 };
     const ellipseRx = 160;
     const ellipseRy = 100;
-    const outerCircleRadius = 260; // Adjusted to touch the edge of ellipses
+    const outerCircleRadius = 260;
 
     const labels = [
         { title: "Mendygo", id: 0, ...center },
@@ -38,7 +39,7 @@ export default function VennDiagram() {
     ];
 
     return (
-        <div className="flex items-center justify-center min-h-screen  p-4">
+        <div className="flex items-center justify-center p-4">
             <div className="w-full max-w-4xl">
                 <svg
                     width="100%"
@@ -47,15 +48,25 @@ export default function VennDiagram() {
                     className="text-black dark:text-gray-300 w-full h-auto"
                     preserveAspectRatio="xMidYMid meet"
                 >
+                    <defs>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                            <feMerge>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
 
                     <circle
                         cx={center.cx}
                         cy={center.cy}
                         r={outerCircleRadius}
                         fill="none"
-                        stroke="currentColor"
+                        stroke="#abff02"
                         strokeWidth="1.6"
                         className="opacity-20"
+                        filter="url(#glow)"
                     />
 
                     <circle
@@ -73,20 +84,21 @@ export default function VennDiagram() {
                         cy={center.cy}
                         r="40"
                         fill="none"
-                        stroke="currentColor"
+                        stroke="#abff02"
                         strokeWidth={hoverIndex === -1 ? 2.5 : 1.5}
                         className={`transition-all duration-300 pointer-events-none ${hoverIndex === -1 ? "animate-pulse" : ""
                             }`}
+                        filter="url(#glow)"
                     />
-                    <text
-                        x={center.cx}
-                        y={center.cy + 5}
-                        textAnchor="middle"
-                        fontSize="12"
-                        className="fill-current pointer-events-none font-semibold"
-                    >
-                        01 Mendygo
-                    </text>
+
+                    <image
+                        x={center.cx - 20}
+                        y={center.cy - 20}
+                        width="40"
+                        height="40"
+                        href="/logo.png"
+                        className="pointer-events-none"
+                    />
 
                     {labels.slice(1).map((label, index) => {
                         const angle = (index * 60 * Math.PI) / 180;
@@ -117,21 +129,22 @@ export default function VennDiagram() {
                                     ry={ellipseRy}
                                     transform={`rotate(${index * 60}, ${center.cx}, ${center.cy})`}
                                     fill="none"
-                                    stroke="currentColor"
+                                    stroke="#abff02"
                                     strokeWidth={hoverIndex === index ? 2.5 : 1.5}
                                     strokeOpacity={hoverIndex === index ? 0.8 : 0.4}
                                     className={`transition-all duration-300 pointer-events-none ${hoverIndex === index ? "animate-pulseBorder" : ""
                                         }`}
+                                    filter="url(#glow)"
                                 />
 
                                 <foreignObject
-                                    x={x - 60}
-                                    y={y - 12}
-                                    width={120}
-                                    height={24}
+                                    x={x - 70}
+                                    y={y - 15}
+                                    width={140}
+                                    height={30}
                                     className="pointer-events-none"
                                 >
-                                    <div className="flex items-center justify-center gap-1 text-xs text-center text-current font-medium">
+                                    <div className="flex items-center justify-center gap-1 text-sm text-center text-current font-medium">
                                         <Icon className="w-4 h-4" />
                                         <span>{`0${label.id + 1} ${label.title}`}</span>
                                     </div>

@@ -1,8 +1,8 @@
 "use client";
-import { useScroll, useTransform } from "framer-motion";
+import { useScroll } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight, Play } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import mendygo from "../../assets/mendygo white green wordmark.png";
 import mendygoBlack from "../../assets/mendygo black green wordmark.png";
@@ -23,23 +23,22 @@ export default function Hero() {
     });
 
     useEffect(() => {
-        // Generate floating dots
-        const generated = Array.from({ length: 40 }, () => ({
-            top: Math.random() * 100,
-            left: Math.random() * 100,
-            size: Math.random() * 2 + 0.5,
-            opacity: Math.random() * 0.3 + 0.1,
-        }));
-        setDots(generated);
-
-        // Generate blinking stars
-        const generatedStars = Array.from({ length: 25 }, () => ({
-            top: Math.random() * 100,
-            left: Math.random() * 100,
-            size: Math.random() * 2 + 1,
-            delay: Math.random() * 3,
-        }));
-        setStars(generatedStars);
+        setDots(
+            Array.from({ length: 40 }, () => ({
+                top: Math.random() * 100,
+                left: Math.random() * 100,
+                size: Math.random() * 2 + 0.5,
+                opacity: Math.random() * 0.3 + 0.1,
+            }))
+        );
+        setStars(
+            Array.from({ length: 25 }, () => ({
+                top: Math.random() * 100,
+                left: Math.random() * 100,
+                size: Math.random() * 2 + 1,
+                delay: Math.random() * 3,
+            }))
+        );
     }, []);
 
     useEffect(() => {
@@ -49,9 +48,8 @@ export default function Hero() {
                 y: (e.clientY / window.innerHeight) * 100,
             });
         };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
     return (
@@ -60,12 +58,14 @@ export default function Hero() {
                 ref={ref}
                 className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
             >
+                {/* Glow effect */}
                 <motion.div
                     className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none z-10"
                     style={{
                         background: `radial-gradient(400px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(171,255,2,0.3), transparent 50%)`,
                     }}
                 />
+                {/* Animated stars */}
                 {stars.map((star, i) => (
                     <motion.div
                         key={`star-${i}`}
@@ -76,10 +76,7 @@ export default function Hero() {
                             height: `${star.size}px`,
                         }}
                         className="absolute z-10 rounded-full bg-yellow-200 dark:bg-yellow-100 pointer-events-none"
-                        animate={{
-                            opacity: [0, 0.8, 0],
-                            scale: [0.5, 1, 0.5],
-                        }}
+                        animate={{ opacity: [0, 0.8, 0], scale: [0.5, 1, 0.5] }}
                         transition={{
                             duration: 2,
                             repeat: Infinity,
@@ -88,7 +85,7 @@ export default function Hero() {
                         }}
                     />
                 ))}
-
+                {/* Floating dots */}
                 {dots.map((dot, i) => (
                     <motion.div
                         key={`dot-${i}`}
@@ -97,12 +94,17 @@ export default function Hero() {
                             left: `${dot.left}%`,
                             width: `${dot.size}px`,
                             height: `${dot.size}px`,
-                            background: i % 3 === 0 ? '#abff02' : (i % 2 === 0 ? '#d1d5db' : '#9ca3af'),
+                            background:
+                                i % 3 === 0
+                                    ? "#abff02"
+                                    : i % 2 === 0
+                                        ? "#d1d5db"
+                                        : "#9ca3af",
                         }}
                         className="absolute z-10 rounded-full pointer-events-none"
                         animate={{
                             y: ["0%", "100vh"],
-                            opacity: [0, dot.opacity, dot.opacity * 0.3, 0]
+                            opacity: [0, dot.opacity, dot.opacity * 0.3, 0],
                         }}
                         transition={{
                             duration: Math.random() * 8 + 12,
@@ -113,15 +115,16 @@ export default function Hero() {
                     />
                 ))}
 
+                {/* MAIN CONTENT */}
                 <div className="relative z-20 w-full max-w-7xl text-center">
-
+                    {/* Top badge */}
                     <motion.div
                         initial={{ opacity: 0, y: 20, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{
                             duration: 0.8,
                             ease: [0.22, 1, 0.36, 1],
-                            delay: 0.2
+                            delay: 0.2,
                         }}
                         className="mb-6 sm:mb-8 flex justify-center"
                     >
@@ -140,6 +143,7 @@ export default function Hero() {
                         </motion.span>
                     </motion.div>
 
+                    {/* Hero Heading */}
                     <div className="relative">
                         <h1 className="relative z-10 mx-auto max-w-6xl text-balance text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tight">
                             {"AI that adapts.".split(" ").map((word, index) => (
@@ -160,17 +164,18 @@ export default function Hero() {
                         </h1>
                     </div>
 
+                    {/* Sub-heading + Logo */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
                             duration: 0.8,
                             delay: 1.4,
-                            ease: [0.22, 1, 0.36, 1]
+                            ease: [0.22, 1, 0.36, 1],
                         }}
-                        className="relative z-10 mx-auto mt-6 sm:mt-8 max-w-4xl"
+                        className="relative z-10 mx-auto mt-6 xl:mt-10 sm:mt-8 max-w-4xl px-4"
                     >
-                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-gray-700 flex flex-wrap justify-center items-center gap-2 sm:gap-4 dark:text-gray-200">
+                        <h2 className="text-[22px] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-black/80 flex flex-wrap justify-center items-center sm:gap-4 dark:text-gray-200">
                             <span className="leading-relaxed">Join the future with</span>
                             <motion.span
                                 className="inline-flex items-center"
@@ -180,40 +185,38 @@ export default function Hero() {
                                 <Image
                                     src={mendygoBlack}
                                     alt="Mendygo Logo"
-                                    width={200}
-                                    height={50}
-                                    className="object-contain w-auto h-8 sm:h-8 md:h-10 lg:h-12 xl:h-14 drop-shadow-sm block mt-4 dark:hidden"
+                                    className="object-contain w-auto mt-4 h-16 sm:h-16 md:h-12 lg:h-16 xl:h-20 drop-shadow-sm block dark:hidden xl:mt-8"
                                     priority
                                 />
                                 <Image
                                     src={mendygo}
                                     alt="Mendygo Logo"
-                                    width={200}
-                                    height={50}
-                                    className="object-contain w-auto h-14 sm:h-8 md:h-10 lg:h-12 xl:h-16 drop-shadow-sm hidden mt-4 dark:block"
+                                    className="object-contain w-auto h-10 sm:h-10 md:h-12 lg:h-14 xl:h-16 drop-shadow-sm hidden dark:block xl:mt-3"
                                     priority
                                 />
                             </motion.span>
                         </h2>
                     </motion.div>
 
+                    {/* Description */}
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 1.8, ease: "easeOut" }}
-                        className="mt-6 sm:mt-8 mx-auto max-w-2xl text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed px-4 dark:text-gray-300"
+                        className="mt-4 sm:mt-6 mx-auto max-w-[97%] text-base sm:text-lg md:text-xl text-black/80 leading-relaxed px-4 dark:text-gray-300 font-semibold xl:mb-2 mb-8"
                     >
-                        Transform your business with intelligent automation that learns, adapts, and scales with your needs.
+                        Transform your business with intelligent automation that learns,
+                        adapts, and scales with your needs.
                     </motion.p>
-
 
                     <GlassmorphedButtons />
 
+                    {/* Trust indicators */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.6, delay: 2.6 }}
-                        className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-sm text-gray-600 dark:text-gray-400"
+                        className="mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-sm text-gray-600 dark:text-gray-400"
                     >
                         <div className="flex items-center gap-2">
                             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -227,6 +230,7 @@ export default function Hero() {
                     </motion.div>
                 </div>
 
+                {/* Scroll hint */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

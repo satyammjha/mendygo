@@ -21,6 +21,8 @@ export default function Home() {
     setIsLoading(false);
   };
 
+
+
   return (
     <div className="relative overflow-hidden min-h-screen dark:bg-black bg-white dark:text-white text-black">
       <AnimatePresence mode="wait">
@@ -49,10 +51,10 @@ export default function Home() {
             </div>
 
             <div className="text-center max-w-2xl mx-auto px-4 space-y-4 mt-50 mb-20">
-              <h2 className="text-2xl md:text-2xl font-semibold">
+              <h2 className="text-2xl md:text-2xl font-semibold text-black dark:text-white">
                 AI Solutions That Take Your Business to the Next Level
               </h2>
-              <p className="text-base md:text-lg text-gray-300">
+              <p className="text-base md:text-lg text-black dark:text-white">
                 We design, develop, and implement automation tools that help you work smarter, not harder.
               </p>
             </div>
@@ -70,7 +72,7 @@ export default function Home() {
               <h1 className="text-2xl md:text-4xl font-bold mt-2">
                 Our Simple, Smart, and Scalable Process
               </h1>
-              <p className="mt-2 text-gray-300 max-w-xl mx-auto">
+              <p className="mt-2 text-black dark:text-white max-w-xl mx-auto">
                 We design, develop, and implement automation tools that help you work smarter, not harder.
               </p>
             </div>

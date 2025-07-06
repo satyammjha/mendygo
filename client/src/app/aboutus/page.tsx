@@ -21,7 +21,7 @@ import d2 from "../../assets/D2.jpeg"
 export default function AboutPage() {
     return (
         <div className="min-h-screen px-4 md:px-16 py-10 bg-white text-black dark:bg-[#0a0a0a] dark:text-[#eaeaea]">
-            <div className="text-center space-y-2 mb-10">
+            <div className="text-center space-y-2 mb-10 mt-10">
                 <h1 className="text-4xl font-bold">About Us</h1>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                     Unlock the Power of Your Enterprise Insights
@@ -29,6 +29,30 @@ export default function AboutPage() {
             </div>
 
             <section className="grid md:grid-cols-2 gap-10 mb-16">
+
+
+                <Card className="shadow-md dark:shadow-lg dark:bg-[#111]">
+                    <CardContent className="p-6">
+                        <h2 className="text-2xl font-semibold mb-4">Director</h2>
+                        <div className="flex flex-col md:flex-row items-center gap-4">
+                            <Image
+                                src={d2}
+                                alt="Sourav Verma"
+                                width={120}
+                                height={120}
+                                className="w-[120px] h-[120px] rounded-full border shadow object-cover"
+                            />
+                            <div>
+                                <h3 className="font-semibold text-lg">Mr. Sourav Verma</h3>
+                                <p className="mt-2 text-sm text-muted-foreground">
+                                    Driving digital transformation and automation excellence with a futuristic approach.
+                                </p>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+
+
                 <Card className="shadow-md dark:shadow-lg dark:bg-[#111]">
                     <CardContent className="p-6">
                         <h2 className="text-2xl font-semibold mb-4">Director</h2>
@@ -42,32 +66,8 @@ export default function AboutPage() {
                             />
                             <div>
                                 <h3 className="font-semibold text-lg">Mrs. Santosh Verma</h3>
-                                <ul className="list-disc list-inside mt-2 space-y-1 text-sm">
-                                    <li>Responsibility: Personal ownership of work and actions.</li>
-                                    <li>Honesty and Integrity: Ethical and transparent interactions.</li>
-                                    <li>Innovation: Creative solutions to meet customer needs.</li>
-                                    <li>Excellence: High-quality and valuable services.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                <Card className="shadow-md dark:shadow-lg dark:bg-[#111]">
-                    <CardContent className="p-6">
-                        <h2 className="text-2xl font-semibold mb-4">Director</h2>
-                        <div className="flex flex-col md:flex-row items-center gap-4">
-                            <Image
-                                src={d2}
-                                alt="Saurav Verma"
-                                width={120}
-                                height={120}
-                                className="rounded-full border shadow"
-                            />
-                            <div>
-                                <h3 className="font-semibold text-lg">Mr. Saurav Verma</h3>
                                 <p className="mt-2 text-sm text-muted-foreground">
-                                    Driving digital transformation and automation excellence with a futuristic approach.
+                                    Pioneering digital transformation and automation with a future-ready vision.
                                 </p>
                             </div>
                         </div>

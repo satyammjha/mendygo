@@ -74,8 +74,7 @@ const Timeline = () => {
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-         <VennDiagram/>
-
+                    <VennDiagram />
                     <div className="grid grid-cols-2 gap-4 md:gap-6">
                         {steps.map((step, index) => {
                             const IconComponent = step.icon;

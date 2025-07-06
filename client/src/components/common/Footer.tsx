@@ -190,7 +190,7 @@ export default function Footer() {
                                     Contact
                                 </Link>
                             </li>
-                 
+
                         </ul>
                     </div>
 
@@ -209,7 +209,7 @@ export default function Footer() {
                             </li>
                             <li>
                                 <a
-                                    href="https://facebook.com"
+                                    href="https://www.facebook.com/share/1Yug6qgHLe/?mibextid=wwXIfr"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:text-[#abff02] transition-colors duration-200 block py-1"
@@ -237,6 +237,7 @@ export default function Footer() {
                                     X
                                 </a>
                             </li>
+
                         </ul>
                     </div>
                 </div>
