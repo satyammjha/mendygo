@@ -17,6 +17,7 @@ import { useTheme } from "@/context/ThemeContext";
 export function MyNavbar() {
     const navItems = [
         { name: "About us", link: "/aboutus" },
+        { name: "Services", link: "/services/engineering" },
         { name: "Career", link: "/career" },
         { name: "Contact", link: "/contact" },
         { name: "Blog", link: "/blog" },

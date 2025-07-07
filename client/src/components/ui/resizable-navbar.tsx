@@ -112,7 +112,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-black transition duration-200 lg:flex",
+        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-black ml-8 transition duration-200 lg:flex",
         className
       )}
     >
@@ -239,12 +239,12 @@ export const NavbarLogo = () => (
       <Image
         src={mendygoDark}
         alt="mendygo light mode"
-        className="object-contain h-12 w-auto dark:hidden mt-[-1px]"
+        className="object-contain h-12 w-auto dark:hidden mt-[-1px] lg:mr-12"
       />
       <Image
         src={mendygo}
         alt="mendygo dark mode"
-        className="object-contain h-8 w-auto hidden dark:block"
+        className="object-contain h-8 w-auto hidden dark:block lg:mr-12"
       />
     </div>
   </a>

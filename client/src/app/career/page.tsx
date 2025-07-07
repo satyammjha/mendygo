@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { MapPin, Briefcase, Clock, Search } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const CareerPage = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
@@ -180,10 +181,11 @@ const CareerPage = () => {
                                     </span>
                                 ))}
                             </div>
-
-                            <button className="w-full bg-gray-900 dark:bg-white text-white dark:text-black py-2 rounded-lg text-sm font-medium hover:bg-gray-800 dark:hover:bg-neutral-200 transition-colors">
-                                Apply Now
-                            </button>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScmSHb8b243Kv_y-k3pjH4i7g6wC-O-UkSYt8OZ5ZDT7SzN8A/viewform?pli=1" target="_blank">
+                                <Button className="w-full bg-gray-900 dark:bg-white text-white dark:text-black py-2 rounded-lg text-sm font-medium hover:bg-gray-800 dark:hover:bg-neutral-200 transition-colors">
+                                    Apply Now
+                                </Button>
+                            </a>
                         </div>
 
                     ))}

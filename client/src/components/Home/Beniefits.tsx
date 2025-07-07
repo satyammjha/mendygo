@@ -60,17 +60,17 @@ const Benefits = () => {
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#abff02] rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#abff02] rounded-full blur-3xl animate-pulse delay-1000"></div>
             </div>
-            
-             <Badge
+
+            <Badge
                 className="backdrop-blur-md bg-[#abff02]/20 border border-white/20 text-black dark:text-white mx-auto mb-4 hover:shadow-lg hover:shadow-[#abff02]/30 transition
 "
-              >
+            >
                 <span className="text-sm font-semibold">Benefits</span>
-              </Badge>
+            </Badge>
             <h1 className={`font-bold text-2xl mb-8 relative z-10`}>
                 The Key Benefits of AI for Your Business Growth
             </h1>
-            <h4 className="relative z-10">Discover how AI automation enhances efficiency, reduces costs, and drives business growth with smarter, faster processes.</h4>
+            <h4 className="relative z-10 mb-6">Discover how AI automation enhances efficiency, reduces costs, and drives business growth with smarter, faster processes.</h4>
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}

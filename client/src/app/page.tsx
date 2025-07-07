@@ -14,6 +14,8 @@ import Step4 from "@/components/Home/Process/Step4";
 import { SignUpForm } from "@/components/Home/Form";
 import Preloader from "../components/common/Preloader";
 import Timeline from "@/components/Home/Timeline";
+import Image from "next/image";
+import Dashboard from '../assets/dashboard.png'
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,6 +45,19 @@ export default function Home() {
           >
 
             <Hero />
+
+
+            <div className="p-6 flex justify-center relative">
+              <div className="absolute -inset-4 z-0 rounded-lg blur-xl opacity-20" style={{ background: '#abff02' }}></div>
+              <Image
+                src={Dashboard}
+                alt="Mendygo dashboard"
+                className="w-full max-w-5xl h-auto rounded-lg shadow-lg relative z-10"
+              />
+            </div>
+
+
+
             <div className="p-4">
               <TextHoverEffect text="mendygo" />
             </div>
