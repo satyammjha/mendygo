@@ -50,7 +50,7 @@ export default function Footer() {
                 className="absolute top-0 left-0 w-full h-32 sm:h-48 md:h-64 bg-gradient-to-b from-[#abff02] to-transparent pointer-events-none z-0"
             />
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-12 lg:pb-20">
+            <div className="relative z-10 max-w-full mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-12 lg:pb-20">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-y-10 gap-x-8 lg:gap-x-12">
                     <div className="sm:col-span-2 lg:col-span-1 space-y-6">
                         <div className="flex items-center gap-3">
@@ -107,14 +107,14 @@ export default function Footer() {
                                 { href: "/process", label: "Process" },
                                 { href: "/case-studies", label: "Case studies" },
                                 { href: "/benefits", label: "Benefits" },
-                                { href: "/pricing", label: "Pricing" },
+                                { href: "/contact", label: "Pricing" },
                             ],
                         },
                         {
                             title: "Services",
                             links: [
                                 { href: "/services/engineering", label: "Engineering" },
-                                { href: "/services/projectManagement", label: "Project Mgmt" },
+                                { href: "/services/projectManagement", label: "Project Management" },
                                 { href: "/services/technology", label: "Tech & Integration" },
                             ],
                         },

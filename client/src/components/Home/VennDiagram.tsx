@@ -9,7 +9,6 @@ import {
     LineChart,
     Wand2,
 } from "lucide-react";
-import logo from '../../assets/logo.png'
 
 const icons = [
     PlugZap,
@@ -27,6 +26,7 @@ export default function VennDiagram() {
     const ellipseRx = 160;
     const ellipseRy = 100;
     const outerCircleRadius = 260;
+    const labelOrbitRadius = outerCircleRadius - ellipseRy + 30;
 
     const labels = [
         { title: "Mendygo", id: 0, ...center },
@@ -55,6 +55,12 @@ export default function VennDiagram() {
                                 <feMergeNode in="coloredBlur" />
                                 <feMergeNode in="SourceGraphic" />
                             </feMerge>
+                        </filter>
+
+                        <filter id="glass">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur" />
+                            <feOffset in="blur" dx="0" dy="4" result="offsetBlur" />
+                            <feComposite in="SourceGraphic" in2="offsetBlur" operator="over" />
                         </filter>
                     </defs>
 
@@ -102,9 +108,8 @@ export default function VennDiagram() {
 
                     {labels.slice(1).map((label, index) => {
                         const angle = (index * 60 * Math.PI) / 180;
-                        const orbitRadius = outerCircleRadius - ellipseRy;
-                        const x = center.cx + Math.cos(angle) * orbitRadius;
-                        const y = center.cy + Math.sin(angle) * orbitRadius;
+                        const x = center.cx + Math.cos(angle) * labelOrbitRadius;
+                        const y = center.cy + Math.sin(angle) * labelOrbitRadius;
                         const Icon = icons[index];
 
                         return (
@@ -137,14 +142,25 @@ export default function VennDiagram() {
                                     filter="url(#glow)"
                                 />
 
+
+                                <rect
+                                    x={x - 75}
+                                    y={y - 20}
+                                    width={150}
+                                    height={40}
+                                    rx="8"
+                                    fill="rgba(255, 255, 255, 0.4)"
+                                    filter="url(#glass)"
+                                    className="backdrop-blur-[2px]"
+                                />
                                 <foreignObject
-                                    x={x - 70}
-                                    y={y - 15}
-                                    width={140}
-                                    height={30}
+                                    x={x - 75}
+                                    y={y - 20}
+                                    width={150}
+                                    height={40}
                                     className="pointer-events-none"
                                 >
-                                    <div className="flex items-center justify-center gap-1 text-sm text-center text-current font-medium">
+                                    <div className="flex items-center justify-center gap-1 text-sm text-center text-current font-medium h-full">
                                         <Icon className="w-4 h-4" />
                                         <span>{`0${label.id + 1} ${label.title}`}</span>
                                     </div>

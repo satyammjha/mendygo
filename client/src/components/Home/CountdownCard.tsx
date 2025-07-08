@@ -6,7 +6,7 @@ import Tooltip from "./ToolTip";
 
 const CountdownCard = () => {
     const [timeLeft, setTimeLeft] = useState({
-        days: 17,
+        days: 45,
         hours: 20,
         minutes: 41,
         seconds: 3,

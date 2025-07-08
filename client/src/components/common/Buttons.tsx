@@ -53,7 +53,7 @@ export default function GlassmorphedButtons() {
                 whileTap={{ scale: 0.98 }}
             >
                 <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10 rounded-xl opacity-5"
+                    className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10 rounded-xl opacity-5 mb-5"
                     initial={{ x: "-100%" }}
                     whileHover={{ x: "100%" }}
                     transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -66,7 +66,6 @@ export default function GlassmorphedButtons() {
             </motion.button>
 
 
-            {/* Modal */}
             <AnimatePresence>
                 {isModalOpen && (
                     <motion.div
@@ -82,7 +81,7 @@ export default function GlassmorphedButtons() {
                             transition={{ duration: 0.3 }}
                             className="bg-neutral-900 rounded-2xl p-6 w-full max-w-sm text-white shadow-xl border border-white/10 relative"
                         >
-                            {/* Close Button */}
+
                             <button
                                 onClick={() => setIsModalOpen(false)}
                                 className="absolute top-4 right-4 text-white hover:text-[#abff02] transition"

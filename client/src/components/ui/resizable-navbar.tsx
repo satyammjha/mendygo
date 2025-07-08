@@ -239,7 +239,7 @@ export const NavbarLogo = () => (
       <Image
         src={mendygoDark}
         alt="mendygo light mode"
-        className="object-contain h-12 w-auto dark:hidden mt-[-1px] lg:mr-12"
+        className="object-contain h-12 w-auto dark:hidden mt-[-1px] lg:mr-16"
       />
       <Image
         src={mendygo}
