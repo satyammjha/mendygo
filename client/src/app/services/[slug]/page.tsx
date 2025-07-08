@@ -19,7 +19,7 @@ export default function ServicesPage() {
 
     return (
         <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white px-4 sm:px-6 lg:px-16 py-10 sm:py-12 lg:py-16">
-            <main className="max-w-7xl mx-auto">
+            <main className="max-w-7xl mx-auto mt-30">
 
                 <section className="text-center mb-10 sm:mb-12">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl mt-16 font-bold mb-4 sm:mb-6 leading-tight">

@@ -17,10 +17,35 @@ import { useTheme } from "@/context/ThemeContext";
 export function MyNavbar() {
     const navItems = [
         { name: "About us", link: "/aboutus" },
-        { name: "Services", link: "/services/engineering" },
-        { name: "Industries", link: "/industries/pulp-fiber" },
-        { name: "Contact", link: "/contact" },
+        {
+            name: "Services",
+            link: "/services/engineering",
+            dropdown: {
+                title: "Services",
+                links: [
+                    { href: "/services/engineering", label: "Engineering" },
+                    { href: "/services/projectManagement", label: "Project Management" },
+                    { href: "/services/technology", label: "Tech & Integration" },
+                ],
+            }
+        },
+        {
+            name: "Industries",
+            link: "/industries/pulp-fiber",
+            dropdown: {
+                title: "Industries",
+                links: [
+                    { href: "/industries/pulp-fiber", label: "Pulp & Fiber" },
+                    { href: "/industries/chemicals", label: "Chemicals" },
+                    { href: "/industries/food-beverage", label: "Food & Beverage" },
+                    { href: "/industries/buildings", label: "Buildings and Factories" },
+                    { href: "/industries/retail-malls", label: "Retail & Malls" },
+                    { href: "/industries/pharmaceuticals", label: "Pharmaceuticals" },
+                ],
+            }
+        },
         { name: "Blog", link: "/blog" },
+        { name: "Contact", link: "/contact" },
     ];
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -118,14 +143,11 @@ export function MyNavbar() {
                         onClose={() => setIsMobileMenuOpen(false)}
                     >
                         {navItems.map((item, idx) => (
-                            <a
+                            <MobileNavItem
                                 key={`mobile-link-${idx}`}
-                                href={item.link}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="relative text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                            >
-                                <span>{item.name}</span>
-                            </a>
+                                item={item}
+                                onClose={() => setIsMobileMenuOpen(false)}
+                            />
                         ))}
 
                         <div className="flex w-full flex-col gap-4 mt-4">
@@ -143,3 +165,48 @@ export function MyNavbar() {
         </div>
     );
 }
+
+// Mobile Navigation Item Component
+const MobileNavItem = ({ item, onClose }: { item: any; onClose: () => void }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    if (item.dropdown) {
+        return (
+            <div className="w-full">
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="relative text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors w-full text-left flex items-center justify-between"
+                >
+                    <span>{item.name}</span>
+                    <span className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
+                        ▼
+                    </span>
+                </button>
+                {isOpen && (
+                    <div className="mt-2 ml-4 space-y-2">
+                        {item.dropdown.links.map((link: any, idx: number) => (
+                            <a
+                                key={idx}
+                                href={link.href}
+                                onClick={onClose}
+                                className="block text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                    </div>
+                )}
+            </div>
+        );
+    }
+
+    return (
+        <a
+            href={item.link}
+            onClick={onClose}
+            className="relative text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+            <span>{item.name}</span>
+        </a>
+    );
+};

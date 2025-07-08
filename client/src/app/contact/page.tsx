@@ -54,7 +54,7 @@ const Contact = () => {
 
     return (
         <div className="min-h-screen bg-white dark:bg-black px-4 py-8 md:py-16 text-black dark:text-white relative overflow-hidden">
-            <div className="absolute inset-x-0 top-0 h-64 pointer-events-none z-0 blur-3xl opacity-40 dark:opacity-20"
+            <div className="absolute inset-x-0 top-0 h-64 pointer-events-none z-0 blur-3xl opacity-40 dark:opacity-20 mt-30"
                 style={{ background: "radial-gradient(ellipse at center, #abff02 0%, transparent 80%)" }} />
 
             <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6 md:space-y-8">

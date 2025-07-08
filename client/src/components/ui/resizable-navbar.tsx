@@ -6,12 +6,12 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
-import { MenuIcon, X as CrossIcon, HomeIcon } from "lucide-react";
-import React, { useRef, useState } from "react";
+import { MenuIcon, X as CrossIcon, HomeIcon, ChevronDown } from "lucide-react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import logo from "@/assets/logo.png"
 import mendygo from "../../assets/mendygo white green wordmark.png";
-import mendygoDark from "../../assets/mendygo black green wordmark.png"; // Add your dark mode wordmark here
+import mendygoDark from "../../assets/mendygo black green wordmark.png";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -24,11 +24,24 @@ interface NavBodyProps {
   visible?: boolean;
 }
 
+interface DropdownItem {
+  href: string;
+  label: string;
+}
+
+interface DropdownData {
+  title: string;
+  links: DropdownItem[];
+}
+
+interface NavItem {
+  name: string;
+  link: string;
+  dropdown?: DropdownData;
+}
+
 interface NavItemsProps {
-  items: {
-    name: string;
-    link: string;
-  }[];
+  items: NavItem[];
   className?: string;
   onItemClick?: () => void;
 }
@@ -107,48 +120,121 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
+  const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+
+  const handleMouseEnter = (idx: number) => {
+    setHovered(idx);
+    if (items[idx].dropdown) {
+      setActiveDropdown(idx);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(null);
+    setActiveDropdown(null);
+  };
+
+  const handleDropdownMouseEnter = (idx: number) => {
+    setActiveDropdown(idx);
+  };
+
+  const handleDropdownMouseLeave = () => {
+    setActiveDropdown(null);
+  };
 
   return (
     <motion.div
-      onMouseLeave={() => setHovered(null)}
+      onMouseLeave={handleMouseLeave}
       className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-black ml-8 transition duration-200 lg:flex",
+        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-black ml-24 transition duration-200 lg:flex",
         className
       )}
     >
       {items.map((item, idx) => (
-        <a
-          key={`link-${idx}`}
-          href={item.link}
-          onMouseEnter={() => setHovered(idx)}
-          onMouseLeave={() => setHovered(null)}
-          onClick={onItemClick}
-          className="relative px-4 py-2 text-black dark:text-white transition-colors duration-300"
+        <div
+          key={`nav-item-${idx}`}
+          className="relative"
+          onMouseEnter={() => handleMouseEnter(idx)}
+          onMouseLeave={() => {
+            if (!item.dropdown) {
+              setHovered(null);
+            }
+          }}
         >
-          {/* Animated Background */}
-          {hovered === idx && (
-            <motion.div
-              layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-[#abff02] z-10"
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            />
-          )}
-
-          {/* Text with conditional color */}
-          <span
-            className={cn(
-              "relative z-20 transition-colors duration-300",
-              hovered === idx ? "text-black" : "text-black dark:text-white"
-            )}
+          <button
+            onClick={(e) => {
+              if (!item.dropdown) {
+                onItemClick?.();
+                window.location.href = item.link;
+              }
+            }}
+            className="relative px-4 py-2 text-black dark:text-white transition-colors duration-300 flex items-center gap-1"
           >
-            {item.name}
-          </span>
-        </a>
+            {/* Animated Background */}
+            {hovered === idx && (
+              <motion.div
+                layoutId="hovered"
+                className="absolute inset-0 h-full w-full rounded-full bg-[#abff02] z-10"
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              />
+            )}
+
+            {/* Text with conditional color */}
+            <span
+              className={cn(
+                "relative z-20 transition-colors duration-300",
+                hovered === idx ? "text-black" : "text-black dark:text-white"
+              )}
+            >
+              {item.name}
+            </span>
+
+            {/* Dropdown arrow */}
+            {item.dropdown && (
+              <ChevronDown
+                size={14}
+                className={cn(
+                  "relative z-20 transition-all duration-300",
+                  hovered === idx ? "text-black" : "text-black dark:text-white",
+                  activeDropdown === idx ? "rotate-180" : ""
+                )}
+              />
+            )}
+          </button>
+
+          {/* Dropdown Menu */}
+          <AnimatePresence>
+            {item.dropdown && activeDropdown === idx && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-full left-0 mt-2 min-w-[200px] bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 py-2 z-50"
+                onMouseEnter={() => handleDropdownMouseEnter(idx)}
+                onMouseLeave={handleDropdownMouseLeave}
+              >
+                {item.dropdown.links.map((link, linkIdx) => (
+                  <a
+                    key={linkIdx}
+                    href={link.href}
+                    onClick={() => {
+                      setActiveDropdown(null);
+                      onItemClick?.();
+                    }}
+                    className="block px-4 py-2 text-sm text-black dark:text-white hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       ))}
     </motion.div>
   );
 };
-
 
 export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
@@ -224,7 +310,7 @@ export const MobileNavToggle = ({
 export const NavbarLogo = () => (
   <a
     href="/"
-    className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black dark:text-white"
+    className="relative z-20 mr-16 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black dark:text-white"
   >
     <div className="relative w-[30px] h-[30px]">
       <Image
@@ -239,12 +325,12 @@ export const NavbarLogo = () => (
       <Image
         src={mendygoDark}
         alt="mendygo light mode"
-        className="object-contain h-12 w-auto dark:hidden mt-[-1px] lg:mr-16"
+        className="object-contain h-12 w-auto dark:hidden mt-[-1px] lg:mr-24"
       />
       <Image
         src={mendygo}
         alt="mendygo dark mode"
-        className="object-contain h-8 w-auto hidden dark:block lg:mr-12"
+        className="object-contain h-8 w-auto hidden dark:block lg:mr-24"
       />
     </div>
   </a>

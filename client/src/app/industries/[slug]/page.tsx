@@ -17,7 +17,7 @@ export default function IndustryPage() {
 
     return (
         <main className="min-h-screen bg-white dark:bg-black  text-black dark:text-white px-4 py-12">
-            <section className="text-center mb-12 mt-10">
+            <section className="text-center mb-12 mt-30">
                 <h1 className="text-3xl md:text-4xl font-bold mb-4">{content.title}</h1>
                 <p className="text-lg max-w-3xl mx-auto opacity-80">{content.abstract}</p>
             </section>

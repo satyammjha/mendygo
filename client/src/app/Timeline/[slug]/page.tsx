@@ -36,7 +36,7 @@ export default function Page() {
 
     return (
         <div className="min-h-screen px-4 py-24 md:px-8 lg:px-16 bg-white dark:bg-black text-black dark:text-white">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-5xl mx-auto mt-30">
                 <div className="flex items-center space-x-4 mb-6">
                     {iconMap[slug] || <Settings2 className="w-5 h-5" />}
                     <h1 className="text-3xl font-bold tracking-tight">{data.title}</h1>

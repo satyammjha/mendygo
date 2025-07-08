@@ -143,7 +143,7 @@ const CareerPage = () => {
             </div>
 
             <div className="max-w-6xl mx-auto px-4 pb-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-30">
                     {filteredJobs.map((job) => (
                         <div
                             key={job.id}

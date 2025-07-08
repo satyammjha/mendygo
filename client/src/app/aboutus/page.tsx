@@ -21,7 +21,7 @@ import d2 from "../../assets/D2.jpeg"
 export default function AboutPage() {
     return (
         <div className="min-h-screen px-4 md:px-16 py-10 bg-white text-black dark:bg-[#0a0a0a] dark:text-[#eaeaea]">
-            <div className="text-center space-y-2 mb-10 mt-10">
+            <div className="text-center space-y-2 mb-10 mt-30">
                 <h1 className="text-4xl font-bold">About Us</h1>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                     Unlock the Power of Your Enterprise Insights

@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 const Blog = () => {
     return (
         <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white px-4 py-10">
-            <div className="max-w-3xl mx-auto space-y-6">
+            <div className="max-w-3xl mx-auto space-y-6 mt-30">
                 <div className="space-y-2">
                     <Badge variant="outline" className="text-sm px-3 py-1">
                         Blog

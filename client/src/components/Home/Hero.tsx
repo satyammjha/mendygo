@@ -145,7 +145,7 @@ export default function Hero() {
 
                     {/* Hero Heading */}
                     <div className="relative">
-                        <h1 className="relative z-10 mx-auto max-w-6xl text-balance text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tight">
+                        <h1 className="relative z-10 mx-auto max-w-6xl text-balance text-4xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tight ">
                             {"AI that adapts.".split(" ").map((word, index) => (
                                 <motion.span
                                     key={index}
@@ -164,7 +164,6 @@ export default function Hero() {
                         </h1>
                     </div>
 
-                    {/* Sub-heading + Logo */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
