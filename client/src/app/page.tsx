@@ -308,7 +308,7 @@ export default function Home() {
             </Suspense>
 
             <AnimatedSection
-              className="p-4 md:p-8 sm:mt-[-30%]"
+              className="p-4 md:p-8"
               animationType="glitch"
               delay={0.1}
             >
