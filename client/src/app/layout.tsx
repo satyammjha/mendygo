@@ -1,30 +1,47 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Figtree } from "next/font/google";
 import "./globals.css";
-import { Figtree } from "next/font/google"
 import { ThemeProvider } from "@/context/ThemeContext";
 import { MyNavbar } from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const figtree = Figtree({
-  subsets: ["latin"],
-  variable: "--font-figtree",
-  display: "swap",
-});
-
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
+const figtree = Figtree({ subsets: ["latin"], variable: "--font-figtree", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Mendygo",
-  description: "AI that adapts – Lead generation for modern businesses.",
+  metadataBase: new URL("https://mendygo.com"),
+  title: "Mendygo – AI That Adapts",
+  description: "Lead generation for modern businesses powered by adaptive AI.",
+  applicationName: "Mendygo",
+  keywords: ["AI", "Mendygo", "automation", "lead generation", "smart monitoring", "B2B", "AI systems", "analytics"],
+  authors: [{ name: "Mendygo", url: "https://mendygo.com" }],
+  creator: "Mendygo",
+  publisher: "Mendygo",
+  openGraph: {
+    title: "Mendygo – AI That Adapts",
+    description: "Lead generation and smart monitoring for modern businesses powered by adaptive AI.",
+    url: "https://mendygo.com",
+    siteName: "Mendygo",
+    images: [
+      {
+        url: "https://mendygo.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Mendygo – AI That Adapts",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mendygo – AI That Adapts",
+    description: "Lead generation and smart monitoring for modern businesses powered by adaptive AI.",
+    images: ["https://mendygo.com/og-image.jpg"],
+    site: "@MendygoSocial",
+    creator: "@MendygoSocial",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon" },
@@ -38,12 +55,7 @@ export const metadata: Metadata = {
   },
 };
 
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${figtree.variable} antialiased`}>

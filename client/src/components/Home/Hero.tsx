@@ -2,7 +2,7 @@
 import { useScroll } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import mendygo from "../../assets/mendygo white green wordmark.png";
 import mendygoBlack from "../../assets/mendygo black green wordmark.png";
@@ -56,7 +56,7 @@ export default function Hero() {
         <WavyBackground containerClassName="relative">
             <section
                 ref={ref}
-                className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+                className="relative flex flex-col min-h-[100dvh] items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
             >
                 {/* Glow effect */}
                 <motion.div
@@ -65,7 +65,8 @@ export default function Hero() {
                         background: `radial-gradient(400px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(171,255,2,0.3), transparent 50%)`,
                     }}
                 />
-                {/* Animated stars */}
+
+                {/* Stars */}
                 {stars.map((star, i) => (
                     <motion.div
                         key={`star-${i}`}
@@ -85,6 +86,7 @@ export default function Hero() {
                         }}
                     />
                 ))}
+
                 {/* Floating dots */}
                 {dots.map((dot, i) => (
                     <motion.div
@@ -116,8 +118,8 @@ export default function Hero() {
                 ))}
 
                 {/* MAIN CONTENT */}
-                <div className="relative z-20 w-full max-w-7xl text-center">
-                    {/* Top badge */}
+                <div className="relative z-20 w-full max-w-7xl flex flex-col items-center justify-center text-center mx-auto px-4">
+                    {/* Badge */}
                     <motion.div
                         initial={{ opacity: 0, y: 20, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -126,7 +128,7 @@ export default function Hero() {
                             ease: [0.22, 1, 0.36, 1],
                             delay: 0.2,
                         }}
-                        className="mb-6 sm:mb-8 flex justify-center"
+                        className="mb-6 sm:mb-8"
                     >
                         <motion.span
                             className="inline-flex items-center overflow-hidden rounded-full border border-gray-200/50 bg-white/80 backdrop-blur-xl shadow-lg hover:shadow-xl hover:shadow-[#abff02]/10 transition-all duration-300 group cursor-pointer dark:border-white/20 dark:bg-black/60 dark:hover:shadow-[#abff02]/20"
@@ -143,27 +145,26 @@ export default function Hero() {
                         </motion.span>
                     </motion.div>
 
-                    {/* Hero Heading */}
-                    <div className="relative">
-                        <h1 className="relative z-10 mx-auto max-w-6xl text-balance text-4xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tight ">
-                            {"AI that adapts.".split(" ").map((word, index) => (
-                                <motion.span
-                                    key={index}
-                                    initial={{ opacity: 0, y: 50, rotateX: -90 }}
-                                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                                    transition={{
-                                        duration: 0.8,
-                                        delay: 0.6 + index * 0.2,
-                                        ease: [0.22, 1, 0.36, 1],
-                                    }}
-                                    className="mr-4 inline-block bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent drop-shadow-sm dark:from-white dark:via-white dark:to-gray-200 dark:drop-shadow-lg"
-                                >
-                                    {word}
-                                </motion.span>
-                            ))}
-                        </h1>
-                    </div>
+                    {/* Heading */}
+                    <h1 className="text-4xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.1] tracking-tight mb-6">
+                        {"AI that adapts.".split(" ").map((word, index) => (
+                            <motion.span
+                                key={index}
+                                initial={{ opacity: 0, y: 50, rotateX: -90 }}
+                                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                                transition={{
+                                    duration: 0.8,
+                                    delay: 0.6 + index * 0.2,
+                                    ease: [0.22, 1, 0.36, 1],
+                                }}
+                                className="inline-block mr-4 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent drop-shadow-sm dark:from-white dark:via-white dark:to-gray-200 dark:drop-shadow-lg"
+                            >
+                                {word}
+                            </motion.span>
+                        ))}
+                    </h1>
 
+                    {/* Subheading with Logo */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -172,9 +173,9 @@ export default function Hero() {
                             delay: 1.4,
                             ease: [0.22, 1, 0.36, 1],
                         }}
-                        className="relative z-10 mx-auto mt-6 xl:mt-10 sm:mt-8 max-w-4xl px-4"
+                        className="mt-4 xl:mt-10"
                     >
-                        <h2 className="text-[22px] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-black/80 flex flex-wrap justify-center items-center sm:gap-4 dark:text-gray-200">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-black/80 dark:text-gray-200 flex flex-wrap justify-center items-center gap-4">
                             <span className="leading-relaxed">Join the future with</span>
                             <motion.span
                                 className="inline-flex items-center"
@@ -184,25 +185,25 @@ export default function Hero() {
                                 <Image
                                     src={mendygoBlack}
                                     alt="Mendygo Logo"
-                                    className="object-contain w-auto mt-4 h-16 sm:h-16 md:h-12 lg:h-16 xl:h-20 drop-shadow-sm block dark:hidden xl:mt-8"
+                                    className="object-contain w-auto mt-4 h-16 dark:hidden"
                                     priority
                                 />
                                 <Image
                                     src={mendygo}
                                     alt="Mendygo Logo"
-                                    className="object-contain w-auto h-10 sm:h-10 md:h-12 lg:h-14 xl:h-16 drop-shadow-sm hidden dark:block xl:mt-3"
+                                    className="object-contain w-auto h-16 hidden dark:block"
                                     priority
                                 />
                             </motion.span>
                         </h2>
                     </motion.div>
 
-                    {/* Description */}
+                    {/* Paragraph */}
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 1.8, ease: "easeOut" }}
-                        className="mt-4 sm:mt-6 mx-auto max-w-[97%] text-base sm:text-lg md:text-xl text-black/80 leading-relaxed px-4 dark:text-gray-300 font-semibold xl:mb-2 mb-8"
+                        className="mt-4 sm:mt-6 mx-auto max-w-[90%] text-base sm:text-lg md:text-xl text-black/80 leading-relaxed dark:text-gray-300 font-semibold mb-6 xl:mb-8"
                     >
                         Transform your business with intelligent automation that learns,
                         adapts, and scales with your needs.
