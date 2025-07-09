@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { MyNavbar } from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
@@ -18,6 +19,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Mendygo", url: "https://mendygo.com" }],
   creator: "Mendygo",
   publisher: "Mendygo",
+  viewport: "width=device-width, initial-scale=1.0",
+  themeColor: "#abff02",
+  alternates: {
+    canonical: "https://mendygo.com",
+  },
   openGraph: {
     title: "Mendygo – AI That Adapts",
     description: "Lead generation and smart monitoring for modern businesses powered by adaptive AI.",

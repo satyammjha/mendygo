@@ -130,6 +130,7 @@ export default function Footer() {
               <ul className="text-gray-600 dark:text-gray-400 text-sm space-y-1.5 sm:space-y-2">
                 {[
                   { href: "/gallery", label: "Gallery" },
+                  { href: "/career", label: "Career" },
                   { href: "/services/engineering", label: "Services" },
                   { href: "/process", label: "Process" },
                   { href: "/case-studies", label: "Case studies" },
