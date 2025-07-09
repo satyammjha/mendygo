@@ -113,7 +113,7 @@ export default function VennDiagram() {
                                 >
                                     <div className="flex items-center justify-center w-full h-full">
                                         <div className="flex flex-col items-center justify-center text-sm text-center text-current font-medium gap-1 px-2 py-1 rounded-md shadow-sm">
-                                            <span className="text-xs opacity-70">{`0${(label.id % 9) + 1}`}</span>
+                                            <span className="text-xs opacity-70">{`0${(label.id % 9)}`}</span>
                                             <div className="flex items-center justify-center gap-1">
                                                 <IconComponent type={index % 6} />
                                                 <span>{label.title}</span>
