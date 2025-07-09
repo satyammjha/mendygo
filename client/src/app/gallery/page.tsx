@@ -8,9 +8,8 @@ import hmc3 from '@/assets/gallery/hmc3.jpeg';
 import hmc4 from '@/assets/gallery/hmc4.jpeg';
 import hmc5 from '@/assets/gallery/hmc 5.jpeg';
 import hmc6 from '@/assets/gallery/hmc 6.jpeg';
-import hmc7 from '@/assets/gallery/hmc7.jpeg';
 
-const images = [hmc1, hmc2, hmc3, hmc4, hmc5, hmc6, hmc7];
+const images = [hmc1, hmc2, hmc3, hmc4, hmc5, hmc6];
 
 export default function GalleryPage() {
     return (
