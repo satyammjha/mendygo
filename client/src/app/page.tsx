@@ -128,9 +128,10 @@ export default function Home() {
           <Preloader
             key="preloader"
             onLoadingComplete={handleLoadingComplete}
-            minimumDuration={2500}
+            minimumDuration={0}
           />
         )}
+
 
         {!isLoading && (
           <motion.div
