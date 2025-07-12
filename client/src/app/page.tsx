@@ -6,8 +6,9 @@ import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { Badge } from "@/components/ui/badge";
 import Preloader from "../components/common/Preloader";
 import Image from "next/image";
-import DashboardDark from '../assets/dashboard-dark.png'
-import DashboardLight from '../assets/dashboard-light.png'
+import DashboardDark from '../assets/dashboard-dark.webp'
+import DashboardLight from '../assets/dashboard-light.webp'
+import CompanySlideshow from "@/components/Home/SlideShow";
 
 const CountdownCard = lazy(() => import("@/components/Home/CountdownCard"));
 const Faq = lazy(() => import("@/components/Home/Faq"));
@@ -25,36 +26,16 @@ const LoadingSkeleton = ({ className = "" }) => (
   </div>
 );
 
-import { ReactNode } from "react";
-
-type AnimatedSectionProps = {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-};
-
-const AnimatedSection = ({
-  children,
-  className = "",
-  delay = 0,
-}: AnimatedSectionProps) => {
+const AnimatedSection = ({ children, className = "", delay = 0 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, {
-    once: false,
-    margin: "-50px",
-    amount: 0.3,
-  });
+  const isInView = useInView(ref, { once: false, margin: "-50px", amount: 0.3 });
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: "easeOut",
-      }}
+      transition={{ duration: 0.6, delay, ease: "easeOut" }}
       className={className}
     >
       {children}
@@ -62,30 +43,16 @@ const AnimatedSection = ({
   );
 };
 
-type StaggeredContainerProps = {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-};
-
-const StaggeredContainer = ({ children, className = "", delay = 0 }: StaggeredContainerProps) => {
+const StaggeredContainer = ({ children, className = "", delay = 0 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, {
-    once: false,
-    margin: "-50px",
-    amount: 0.2
-  });
+  const isInView = useInView(ref, { once: false, margin: "-50px", amount: 0.2 });
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: "easeOut",
-      }}
+      transition={{ duration: 0.6, delay, ease: "easeOut" }}
       className={className}
     >
       {children}
@@ -93,33 +60,22 @@ const StaggeredContainer = ({ children, className = "", delay = 0 }: StaggeredCo
   );
 };
 
-type StaggeredChildProps = {
-  children: React.ReactNode;
-  className?: string;
-};
-
-const StaggeredChild = ({ children, className = "" }: StaggeredChildProps) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{
-        duration: 0.6,
-        ease: "easeOut",
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-};
+const StaggeredChild = ({ children, className = "" }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.6, ease: "easeOut" }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
-  const gradientRef = useRef<HTMLDivElement>(null);
+  const gradientRef = useRef(null);
+
+  const handleLoadingComplete = () => setIsLoading(false);
 
   return (
     <div className="relative overflow-hidden min-h-screen dark:bg-black bg-white dark:text-white text-black">
@@ -132,7 +88,6 @@ export default function Home() {
           />
         )}
 
-
         {!isLoading && (
           <motion.div
             key="main-site"
@@ -140,18 +95,14 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-
             <Hero />
 
-            <AnimatedSection
-              className="p-4 md:p-8"
-              delay={0.1}
-            >
+            <AnimatedSection className="p-4 md:p-8" delay={0.1}>
               <TextHoverEffect text="mendygo" />
             </AnimatedSection>
 
             <AnimatedSection
-              className="px-4 sm:px-6 pb-0 flex justify-center relative sm:h-[60vh] min-h-[88vh]"
+              className="px-4 sm:px-6 pb-0 flex justify-center relative sm:h-[60vh] min-h-[88vh] -mb-8 sm:-mb-12 md:-mb-16"
               delay={0.2}
             >
               <div
@@ -162,7 +113,7 @@ export default function Home() {
                   WebkitMaskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)'
                 }}
                 ref={gradientRef}
-              ></div>
+              />
 
               <motion.div
                 className="w-full sm:w-[90%] md:w-[80%] h-full relative rounded-t-lg overflow-hidden"
@@ -170,11 +121,7 @@ export default function Home() {
                   scale: 1.05,
                   rotateY: 2,
                   rotateX: 2,
-                  transition: {
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20
-                  }
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
                 }}
                 whileTap={{ scale: 0.98 }}
                 onMouseMove={(e) => {
@@ -186,8 +133,7 @@ export default function Home() {
 
                     const gradient = gradientRef.current;
                     if (gradient) {
-                      gradient.style.background =
-                        `radial-gradient(circle at ${x}px ${y}px, rgba(96, 165, 250, 0.8) 0%, rgba(147, 51, 234, 0.8) 100%)`;
+                      gradient.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(96, 165, 250, 0.8) 0%, rgba(147, 51, 234, 0.8) 100%)`;
                       gradient.style.opacity = '1';
                     }
                   }
@@ -197,54 +143,30 @@ export default function Home() {
                     gradientRef.current.style.opacity = '0';
                   }
                 }}
-                style={{
-                  transformStyle: "preserve-3d",
-                  perspective: "1000px"
-                }}
+                style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
               >
                 <div className="relative w-full h-full">
-                  {/* Mobile */}
-                  <div className="block sm:hidden h-full flex items-center justify-center relative">
-                    <Image
-                      src={DashboardLight}
-                      alt="Mendygo dashboard"
-                      className="w-auto max-w-full min-h-[90vh] max-h-full object-contain rounded-t-lg shadow-lg block dark:hidden transition-transform duration-300"
-                      priority
-                    />
-                    <Image
-                      src={DashboardDark}
-                      alt="Mendygo dashboard"
-                      className="w-auto max-w-full min-h-[90vh] max-h-full object-contain rounded-t-lg shadow-lg hidden dark:block transition-transform duration-300"
-                      priority
-                    />
-                    {/* Mobile Fade */}
-                    <div className="absolute bottom-0 left-0 w-full h-[20%] pointer-events-none bg-gradient-to-t from-white via-white/60 to-transparent dark:from-[#06060D] dark:via-[#06060D]/60 dark:to-transparent rounded-t-lg" />
-                  </div>
-
-                  {/* Desktop */}
-                  <div className="hidden sm:block w-full h-full relative">
-                    <Image
-                      src={DashboardLight}
-                      alt="Mendygo dashboard"
-                      className="w-full h-full object-cover object-top rounded-t-lg shadow-lg block dark:hidden transition-transform duration-300"
-                      priority
-                    />
-                    <Image
-                      src={DashboardDark}
-                      alt="Mendygo dashboard"
-                      className="w-full h-full object-cover object-top rounded-t-lg shadow-lg hidden dark:block transition-transform duration-300"
-                      priority
-                    />
-                    <div className="absolute bottom-0 left-0 w-full h-[20%] pointer-events-none bg-gradient-to-t from-white via-white/60 to-transparent dark:from-black dark:via-black/60 dark:to-transparent rounded-t-lg" />
-                  </div>
+                  {/* Light Theme Image */}
+                  <Image
+                    src={DashboardLight}
+                    alt="Mendygo dashboard"
+                    className="w-full h-full object-cover sm:object-cover object-top rounded-t-lg shadow-lg block dark:hidden transition-transform duration-300"
+                    priority
+                  />
+                  {/* Dark Theme Image */}
+                  <Image
+                    src={DashboardDark}
+                    alt="Mendygo dashboard"
+                    className="w-full h-full object-cover sm:object-cover object-top rounded-t-lg shadow-lg hidden dark:block transition-transform duration-300"
+                    priority
+                  />
+                  {/* Bottom Fade for both Mobile and Desktop - Increased fade */}
+                  <div className="absolute bottom-0 left-0 w-full h-[40%] pointer-events-none bg-gradient-to-t from-white via-white/90 via-white/70 via-white/40 to-transparent dark:from-black dark:via-black/90 dark:via-black/70 dark:via-black/40 dark:to-transparent rounded-t-lg" />
                 </div>
               </motion.div>
             </AnimatedSection>
 
-            <AnimatedSection
-              className="px-4 py-2 sm:py-2 md:py-12"
-              delay={0.1}
-            >
+            <AnimatedSection className="px-4 py-0 sm:py-0 md:py-8" delay={0.1}>
               <Suspense fallback={<LoadingSkeleton className="h-48" />}>
                 <CountdownCard />
               </Suspense>
@@ -272,9 +194,7 @@ export default function Home() {
               </motion.p>
             </AnimatedSection>
 
-            <AnimatedSection
-              delay={0.3}
-            >
+            <AnimatedSection delay={0.3}>
               <Suspense fallback={<LoadingSkeleton className="h-96" />}>
                 <Timeline />
               </Suspense>
@@ -284,9 +204,7 @@ export default function Home() {
               className="relative mt-16 sm:mt-20 md:mt-24 text-center px-4"
               delay={0.1}
             >
-              <Badge
-                className="backdrop-blur-md bg-[#abff02]/20 border border-white/20 text-black dark:text-white mx-auto mb-4 hover:shadow-lg hover:shadow-[#abff02]/30 transition"
-              >
+              <Badge className="backdrop-blur-md bg-[#abff02]/20 border border-white/20 text-black dark:text-white mx-auto mb-4 hover:shadow-lg hover:shadow-[#abff02]/30 transition">
                 <span className="text-sm font-semibold">Our Process</span>
               </Badge>
 
@@ -328,27 +246,38 @@ export default function Home() {
               </div>
             </StaggeredContainer>
 
-            <AnimatedSection
-              className="mt-6 sm:mt-8 md:mt-10"
-              delay={0.1}
-            >
+            <AnimatedSection className="mt-6 sm:mt-8 md:mt-10" delay={0.1}>
               <Suspense fallback={<LoadingSkeleton className="h-96" />}>
                 <Benefits />
               </Suspense>
             </AnimatedSection>
 
             <AnimatedSection
-              className="mt-8 sm:mt-12 md:mt-16"
-              delay={0.2}
+              className="relative mt-16 sm:mt-20 md:mt-24 text-center px-4"
+              delay={0.1}
             >
+              <Badge className="backdrop-blur-md bg-[#abff02]/20 border border-white/20 text-black dark:text-white mx-auto mb-4 hover:shadow-lg hover:shadow-[#abff02]/30 transition">
+                <span className="text-sm font-semibold">Our Partners</span>
+              </Badge>
+
+              <h1 className="text-2xl md:text-4xl font-bold mt-2">
+                Trusted by the Best in the Industry
+              </h1>
+              <p className="mt-2 text-black dark:text-white max-w-xl mx-auto">
+                We are proud to be the automation partner of top-tier automotive and tech companies across the globe.
+              </p>
+
+              <CompanySlideshow />
+            </AnimatedSection>
+
+
+            <AnimatedSection className="mt-8 sm:mt-12 md:mt-16" delay={0.2}>
               <Suspense fallback={<LoadingSkeleton className="h-96" />}>
                 <Faq />
               </Suspense>
             </AnimatedSection>
 
-            <AnimatedSection
-              delay={0.3}
-            >
+            <AnimatedSection delay={0.3}>
               <Suspense fallback={<LoadingSkeleton className="h-96" />}>
                 <SignUpForm />
               </Suspense>

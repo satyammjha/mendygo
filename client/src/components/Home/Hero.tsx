@@ -157,12 +157,13 @@ export default function Hero() {
                                     delay: 0.6 + index * 0.2,
                                     ease: [0.22, 1, 0.36, 1],
                                 }}
-                                className="inline-block mr-4 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent drop-shadow-sm dark:from-white dark:via-white dark:to-gray-200 dark:drop-shadow-lg"
+                                className="inline-block mr-2 sm:mr-3 md:mr-4 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent drop-shadow-sm dark:from-white dark:via-white dark:to-gray-200 dark:drop-shadow-lg"
                             >
                                 {word}
                             </motion.span>
                         ))}
                     </h1>
+
 
                     {/* Subheading with Logo */}
                     <motion.div
@@ -185,7 +186,7 @@ export default function Hero() {
                                 <Image
                                     src={mendygoBlack}
                                     alt="Mendygo Logo"
-                                    className="object-contain w-auto mt-4 h-16 dark:hidden"
+                                    className="object-contain w-auto lg:mt-8 lg:h-20 h-14 dark:hidden"
                                     priority
                                 />
                                 <Image
@@ -195,6 +196,8 @@ export default function Hero() {
                                     priority
                                 />
                             </motion.span>
+
+
                         </h2>
                     </motion.div>
 
