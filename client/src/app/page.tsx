@@ -202,34 +202,41 @@ export default function Home() {
                   perspective: "1000px"
                 }}
               >
-                <div className="block sm:hidden h-full flex items-center justify-center">
-                  <Image
-                    src={DashboardLight}
-                    alt="Mendygo dashboard"
-                    className="w-auto max-w-full min-h-[90vh] max-h-full object-contain rounded-t-lg shadow-lg block dark:hidden transition-transform duration-300"
-                    priority
-                  />
-                  <Image
-                    src={DashboardDark}
-                    alt="Mendygo dashboard"
-                    className="w-auto max-w-full min-h-[90vh] max-h-full object-contain rounded-t-lg shadow-lg hidden dark:block transition-transform duration-300"
-                    priority
-                  />
-                </div>
+                <div className="relative w-full h-full">
+                  {/* Mobile */}
+                  <div className="block sm:hidden h-full flex items-center justify-center relative">
+                    <Image
+                      src={DashboardLight}
+                      alt="Mendygo dashboard"
+                      className="w-auto max-w-full min-h-[90vh] max-h-full object-contain rounded-t-lg shadow-lg block dark:hidden transition-transform duration-300"
+                      priority
+                    />
+                    <Image
+                      src={DashboardDark}
+                      alt="Mendygo dashboard"
+                      className="w-auto max-w-full min-h-[90vh] max-h-full object-contain rounded-t-lg shadow-lg hidden dark:block transition-transform duration-300"
+                      priority
+                    />
+                    {/* Mobile Fade */}
+                    <div className="absolute bottom-0 left-0 w-full h-[20%] pointer-events-none bg-gradient-to-t from-white via-white/60 to-transparent dark:from-[#06060D] dark:via-[#06060D]/60 dark:to-transparent rounded-t-lg" />
+                  </div>
 
-                <div className="hidden sm:block w-full h-full">
-                  <Image
-                    src={DashboardLight}
-                    alt="Mendygo dashboard"
-                    className="w-full h-full object-cover object-top rounded-t-lg shadow-lg block dark:hidden transition-transform duration-300"
-                    priority
-                  />
-                  <Image
-                    src={DashboardDark}
-                    alt="Mendygo dashboard"
-                    className="w-full h-full object-cover object-top rounded-t-lg shadow-lg hidden dark:block transition-transform duration-300"
-                    priority
-                  />
+                  {/* Desktop */}
+                  <div className="hidden sm:block w-full h-full relative">
+                    <Image
+                      src={DashboardLight}
+                      alt="Mendygo dashboard"
+                      className="w-full h-full object-cover object-top rounded-t-lg shadow-lg block dark:hidden transition-transform duration-300"
+                      priority
+                    />
+                    <Image
+                      src={DashboardDark}
+                      alt="Mendygo dashboard"
+                      className="w-full h-full object-cover object-top rounded-t-lg shadow-lg hidden dark:block transition-transform duration-300"
+                      priority
+                    />
+                    <div className="absolute bottom-0 left-0 w-full h-[20%] pointer-events-none bg-gradient-to-t from-white via-white/60 to-transparent dark:from-black dark:via-black/60 dark:to-transparent rounded-t-lg" />
+                  </div>
                 </div>
               </motion.div>
             </AnimatedSection>
