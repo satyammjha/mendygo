@@ -30,6 +30,12 @@ const AnimatedSection = ({ children, className = "", delay = 0 }: { children: Re
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-50px", amount: 0.3 });
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       ref={ref}
@@ -47,6 +53,12 @@ const StaggeredContainer = ({ children, className = "", delay = 0 }: { children:
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-50px", amount: 0.2 });
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       ref={ref}
@@ -60,20 +72,27 @@ const StaggeredContainer = ({ children, className = "", delay = 0 }: { children:
   );
 };
 
-const StaggeredChild = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.6, ease: "easeOut" }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
+const StaggeredChild = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const gradientRef = useRef<HTMLDivElement | null>(null);
 
   const handleLoadingComplete = () => setIsLoading(false);
 
@@ -100,70 +119,28 @@ export default function Home() {
             <AnimatedSection className="p-4 md:p-8" delay={0.1}>
               <TextHoverEffect text="mendygo" />
             </AnimatedSection>
-
             <AnimatedSection
-              className="px-4 sm:px-6 pb-0 flex justify-center relative sm:h-[60vh] min-h-[88vh] -mb-8 sm:-mb-12 md:-mb-16"
+              className="px-4 sm:px-6 pb-0 flex justify-center relative sm:h-[60vh] min-h-[60vh] -mb-8 sm:-mb-12 md:-mb-16"
               delay={0.2}
             >
-              <div
-                className="absolute inset-0 z-0 opacity-0 transition-opacity duration-300 pointer-events-none hidden sm:block"
-                style={{
-                  background: `radial-gradient(circle at center, rgba(96, 165, 250, 0) 0%, rgba(147, 51, 234, 0) 100%)`,
-                  maskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)'
-                }}
-                ref={gradientRef}
-              />
-
-              <motion.div
-                className="w-full sm:w-[90%] md:w-[80%] h-full relative rounded-t-lg overflow-hidden"
-                whileHover={{
-                  scale: 1.05,
-                  rotateY: 2,
-                  rotateX: 2,
-                  transition: { type: "spring", stiffness: 300, damping: 20 }
-                }}
-                whileTap={{ scale: 0.98 }}
-                onMouseMove={(e) => {
-                  if (window.innerWidth >= 640) {
-                    const container = e.currentTarget;
-                    const rect = container.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    const gradient = gradientRef.current;
-                    if (gradient) {
-                      gradient.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(96, 165, 250, 0.8) 0%, rgba(147, 51, 234, 0.8) 100%)`;
-                      gradient.style.opacity = '1';
-                    }
-                  }
-                }}
-                onMouseLeave={() => {
-                  if (gradientRef.current) {
-                    gradientRef.current.style.opacity = '0';
-                  }
-                }}
-                style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
-              >
+              <div className="w-full sm:w-[90%] md:w-[80%] h-full relative rounded-t-lg overflow-hidden">
                 <div className="relative w-full h-full">
-                  {/* Light Theme Image */}
                   <Image
                     src={DashboardLight}
                     alt="Mendygo dashboard"
-                    className="w-full h-full object-cover sm:object-cover object-top rounded-t-lg shadow-lg block dark:hidden transition-transform duration-300"
+                    className="w-full h-full object-cover sm:object-cover object-top rounded-t-lg shadow-lg block dark:hidden"
                     priority
                   />
-                  {/* Dark Theme Image */}
+
                   <Image
                     src={DashboardDark}
                     alt="Mendygo dashboard"
-                    className="w-full h-full object-cover sm:object-cover object-top rounded-t-lg shadow-lg hidden dark:block transition-transform duration-300"
+                    className="w-full h-full object-cover sm:object-cover object-top rounded-t-lg shadow-lg hidden dark:block"
                     priority
                   />
-                  {/* Bottom Fade for both Mobile and Desktop - Increased fade */}
-                  <div className="absolute bottom-0 left-0 w-full h-[40%] pointer-events-none bg-gradient-to-t from-white via-white/90 via-white/70 via-white/40 to-transparent dark:from-black dark:via-black/90 dark:via-black/70 dark:via-black/40 dark:to-transparent rounded-t-lg" />
+                  <div className="absolute bottom-0 left-0 w-full h-[30%] pointer-events-none bg-gradient-to-t from-white via-white/90 via-white/70 via-white/40 to-transparent dark:from-black  dark:via-black/70 dark:via-black/40 dark:to-transparent rounded-t-lg" />
                 </div>
-              </motion.div>
+              </div>
             </AnimatedSection>
 
             <AnimatedSection className="px-4 py-0 sm:py-0 md:py-8" delay={0.1}>
@@ -173,25 +150,15 @@ export default function Home() {
             </AnimatedSection>
 
             <AnimatedSection
-              className="text-center max-w-2xl mx-auto px-4 space-y-4 mb-8 sm:mb-12 md:mb-16"
+              className="text-center max-w-2xl mx-auto px-4 space-y-4 mb-8 sm:mb-12 md:mb-16 mt-8"
               delay={0.2}
             >
-              <motion.h2
-                className="text-2xl md:text-2xl font-semibold text-black dark:text-white"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
+              <h2 className="text-2xl md:text-2xl font-semibold text-black dark:text-white">
                 AI Solutions That Take Your Business to the Next Level
-              </motion.h2>
-              <motion.p
-                className="text-base md:text-lg text-black dark:text-white"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
+              </h2>
+              <p className="text-base md:text-lg text-black dark:text-white">
                 We design, develop, and implement automation tools that help you work smarter, not harder.
-              </motion.p>
+              </p>
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>

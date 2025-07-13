@@ -58,7 +58,6 @@ export default function Hero() {
                 ref={ref}
                 className="relative flex flex-col min-h-[100dvh] items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
             >
-                {/* Glow effect */}
                 <motion.div
                     className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none z-10"
                     style={{
@@ -66,7 +65,6 @@ export default function Hero() {
                     }}
                 />
 
-                {/* Stars */}
                 {stars.map((star, i) => (
                     <motion.div
                         key={`star-${i}`}
@@ -87,7 +85,6 @@ export default function Hero() {
                     />
                 ))}
 
-                {/* Floating dots */}
                 {dots.map((dot, i) => (
                     <motion.div
                         key={`dot-${i}`}
@@ -117,9 +114,8 @@ export default function Hero() {
                     />
                 ))}
 
-                {/* MAIN CONTENT */}
                 <div className="relative z-20 w-full max-w-7xl flex flex-col items-center justify-center text-center mx-auto px-4">
-                    {/* Badge */}
+
                     <motion.div
                         initial={{ opacity: 0, y: 20, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -145,16 +141,15 @@ export default function Hero() {
                         </motion.span>
                     </motion.div>
 
-                    {/* Heading */}
-                    <h1 className="text-4xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.1] tracking-tight mb-6">
+                    <h1 className="text-4xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.1] tracking-tight">
                         {"AI that adapts.".split(" ").map((word, index) => (
                             <motion.span
                                 key={index}
-                                initial={{ opacity: 0, y: 50, rotateX: -90 }}
+                                initial={{ opacity: 0, y: 100, rotateX: -90 }}
                                 animate={{ opacity: 1, y: 0, rotateX: 0 }}
                                 transition={{
-                                    duration: 0.8,
-                                    delay: 0.6 + index * 0.2,
+                                    duration: 1.2,
+                                    delay: 0.3 + index * 0.3,
                                     ease: [0.22, 1, 0.36, 1],
                                 }}
                                 className="inline-block mr-2 sm:mr-3 md:mr-4 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent drop-shadow-sm dark:from-white dark:via-white dark:to-gray-200 dark:drop-shadow-lg"
@@ -163,9 +158,6 @@ export default function Hero() {
                             </motion.span>
                         ))}
                     </h1>
-
-
-                    {/* Subheading with Logo */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -186,22 +178,19 @@ export default function Hero() {
                                 <Image
                                     src={mendygoBlack}
                                     alt="Mendygo Logo"
-                                    className="object-contain w-auto lg:mt-8 lg:h-20 h-14 dark:hidden"
+                                    className="object-contain w-auto lg:mt-8 lg:h-20 h-18 dark:hidden"
                                     priority
                                 />
                                 <Image
                                     src={mendygo}
                                     alt="Mendygo Logo"
-                                    className="object-contain w-auto h-16 hidden dark:block"
+                                    className="object-contain w-auto lg:mt-[16px] lg:h-14 h-16 hidden dark:block"
                                     priority
                                 />
                             </motion.span>
-
-
                         </h2>
                     </motion.div>
 
-                    {/* Paragraph */}
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -214,7 +203,7 @@ export default function Hero() {
 
                     <GlassmorphedButtons />
 
-                    {/* Trust indicators */}
+
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -233,7 +222,6 @@ export default function Hero() {
                     </motion.div>
                 </div>
 
-                {/* Scroll hint */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

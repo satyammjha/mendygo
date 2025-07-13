@@ -5,10 +5,10 @@ export default function VennDiagram() {
 
     const center = { cx: 350, cy: 350 };
     const ellipseRx = 100;
-    const ellipseRy = 130; 
-    const centralCircleRadius = 100; 
+    const ellipseRy = 130;
+    const centralCircleRadius = 100;
     const labelOrbitRadius = 140;
-    const rotationAngle = 20; 
+    const rotationAngle = 20;
     const rotationRad = (rotationAngle * Math.PI) / 180;
     const ellipseOuterRadius = Math.sqrt(
         Math.pow(ellipseRx * Math.cos(rotationRad), 2) +
@@ -113,7 +113,7 @@ export default function VennDiagram() {
                                 >
                                     <div className="flex items-center justify-center w-full h-full">
                                         <div className="flex flex-col items-center justify-center text-sm text-center text-current font-medium gap-1 px-2 py-1 rounded-md shadow-sm">
-                                            <span className="text-xs opacity-70">{`0${(label.id % 9)}`}</span>
+                                            <span className="text-xs opacity-70 hidden lg:block">{`0${(label.id % 9)}`}</span>
                                             <div className="flex items-center justify-center gap-1">
                                                 <IconComponent type={index % 6} />
                                                 <span>{label.title}</span>
