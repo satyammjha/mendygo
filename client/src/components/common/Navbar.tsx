@@ -49,8 +49,7 @@ export function MyNavbar() {
     ];
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const { toggleTheme, theme } = useTheme();
-    console.log("Theme is:", theme)
+    const { toggleTheme } = useTheme();
     const ThemeToggleButton = ({ className = "" }: { className?: string }) => {
         return (
             <button
