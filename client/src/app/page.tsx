@@ -130,10 +130,10 @@ export default function Home() {
                 <TextHoverEffect text="mendygo" />
               </AnimatedSection>
               <AnimatedSection
-                className="px-4 sm:px-6 pb-0 flex justify-center relative sm:h-[60vh] min-h-[60vh] -mb-8 sm:-mb-12 md:-mb-16"
+                className="px-4 sm:px-6 pb-0 flex justify-center relative"
                 delay={0.2}
               >
-                <div className="w-full sm:w-[90%] md:w-[80%] h-full relative rounded-t-lg overflow-hidden">
+                <div className="w-full sm:w-[90%] md:w-[80%] mb-16 h-full relative rounded-t-lg overflow-hidden">
                   <div className="relative w-full h-full">
                     <Image
                       src={DashboardLight}
@@ -148,7 +148,7 @@ export default function Home() {
                       className="w-full h-full object-cover sm:object-cover object-top rounded-t-lg shadow-lg hidden dark:block"
                       priority
                     />
-                    <div className="absolute bottom-0 left-0 w-full h-[30%] sm:h-[15%] pointer-events-none bg-gradient-to-t from-white via-white/90 via-white/70 via-white/40 to-transparent dark:from-black dark:via-black/90 dark:via-black/70 dark:via-black/40 dark:to-transparent rounded-t-lg" />
+                    <div className="absolute bottom-0 left-0 w-full h-[37%] sm:h-[15%] pointer-events-none bg-gradient-to-t from-white via-white/90 via-white/70 via-white/40 to-transparent dark:from-black dark:via-black/90 dark:via-black/70 dark:via-black/40 dark:to-transparent rounded-t-lg" />
                   </div>
                 </div>
               </AnimatedSection>
@@ -160,7 +160,7 @@ export default function Home() {
               </AnimatedSection>
 
               <AnimatedSection
-                className="text-center max-w-2xl mx-auto px-4 space-y-4 mb-4 sm:mb-8 md:mb-8 mt-4 sm:mt-8"
+                className="text-center max-w-2xl mx-auto px-4 space-y-4 mb-4 mt-32"
                 delay={0.2}
               >
                 <h2 className="text-2xl md:text-2xl font-semibold text-black dark:text-white">
@@ -172,7 +172,7 @@ export default function Home() {
               </AnimatedSection>
 
               <AnimatedSection delay={0.3}>
-                <Suspense fallback={<LoadingSkeleton className="h-96" />}>
+                <Suspense fallback={<LoadingSkeleton className="h-96 mt-72" />}>
                   <Timeline />
                 </Suspense>
               </AnimatedSection>
@@ -194,28 +194,28 @@ export default function Home() {
               </AnimatedSection>
 
               <StaggeredContainer
-                className="mt-6 sm:mt-8 md:mt-8 flex flex-col items-center px-4 space-y-4 sm:space-y-6 md:space-y-6"
+                className="mt-6 sm:mt-8 px-8 md:mt-8 flex flex-col items-center lg:px-4 space-y-4 sm:space-y-6 md:space-y-6 -ml-6 lg:ml-0"
                 delay={0.2}
               >
                 <div className="flex flex-col md:flex-row gap-4 sm:gap-6 w-full max-w-6xl justify-center">
-                  <StaggeredChild className="flex-1">
+                  <StaggeredChild>
                     <Suspense fallback={<LoadingSkeleton className="h-64 w-full" />}>
                       <Step1 />
                     </Suspense>
                   </StaggeredChild>
-                  <StaggeredChild className="flex-1">
+                  <StaggeredChild>
                     <Suspense fallback={<LoadingSkeleton className="h-64 w-full" />}>
                       <Step2 />
                     </Suspense>
                   </StaggeredChild>
                 </div>
                 <div className="flex flex-col md:flex-row gap-4 sm:gap-6 w-full max-w-6xl justify-center">
-                  <StaggeredChild className="flex-1">
+                  <StaggeredChild className="">
                     <Suspense fallback={<LoadingSkeleton className="h-64 w-full" />}>
                       <Step3 />
                     </Suspense>
                   </StaggeredChild>
-                  <StaggeredChild className="flex-1">
+                  <StaggeredChild className="">
                     <Suspense fallback={<LoadingSkeleton className="h-64 w-full" />}>
                       <Step4 />
                     </Suspense>
