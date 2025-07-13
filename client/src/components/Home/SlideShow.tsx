@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-
 import Hero from '../../assets/hmc.svg';
 import Dayco from '../../assets/dayco.webp';
 import Tata from '../../assets/tata.svg';
@@ -18,7 +17,7 @@ const companies = [
 ];
 
 const CompanySlider = () => {
-  const allLogos = [...companies, ...companies]; // double for smooth loop
+  const allLogos = [...companies, ...companies];
 
   return (
     <div className="overflow-hidden w-full py-8 bg-white dark:bg-black">
@@ -33,7 +32,7 @@ const CompanySlider = () => {
                 className="object-contain"
               />
             </div>
-            <span className="text-sm text-gray-800 dark:text-white font-medium">
+            <span className="text-sm text-gray-800 dark:text-white font-medium mt-4">
               {company.name}
             </span>
           </div>

@@ -64,12 +64,11 @@ export default function VennDiagram() {
                         cy={center.cy}
                         r={outerCircleRadius}
                         fill="none"
-                        stroke="#abff02"
+                        stroke="#0E4732"
                         strokeWidth="2"
                         className="opacity-30"
                         filter="url(#glow)"
                     />
-
                     {labels.slice(1).map((label, index) => {
                         const angle = (index * 60 * Math.PI) / 180;
                         const ovalCenterX = center.cx + Math.cos(angle) * labelOrbitRadius;
@@ -97,7 +96,7 @@ export default function VennDiagram() {
                                     ry={ellipseRy}
                                     transform={`rotate(${index * 60 + 20}, ${ovalCenterX}, ${ovalCenterY})`}
                                     fill="none"
-                                    stroke="#abff02"
+                                    stroke="#0E4732"
                                     strokeWidth={hoverIndex === index ? 3 : 2}
                                     strokeOpacity={hoverIndex === index ? 0.9 : 0.5}
                                     className={`transition-all duration-300 pointer-events-none ${hoverIndex === index ? "animate-pulseBorder" : ""}`}
@@ -140,7 +139,7 @@ export default function VennDiagram() {
                         cy={center.cy}
                         r={centralCircleRadius}
                         fill="none"
-                        stroke="#abff02"
+                        stroke="#0E4732"
                         strokeWidth={hoverIndex === -1 ? 3 : 2}
                         className={`transition-all duration-300 pointer-events-none ${hoverIndex === -1 ? "animate-pulse" : ""}`}
                         filter="url(#glow)"

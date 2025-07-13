@@ -10,7 +10,7 @@ interface PreloaderProps {
 
 export default function Preloader({
   onLoadingComplete,
-  minimumDuration = 2000,
+  minimumDuration = 0,
 }: PreloaderProps) {
   const [particles, setParticles] = useState<
     { x: number; y: number; duration: number; delay: number }[]
@@ -26,29 +26,20 @@ export default function Preloader({
     }));
     setParticles(p);
 
-    const startTime = Date.now();
     let isPageLoaded = false;
     let progressInterval: NodeJS.Timeout;
 
     progressInterval = setInterval(() => {
       setLoadingProgress((prev) => {
         if (prev >= 100) return 100;
-        return Math.min(prev + Math.random() * 10, 100);
+        return Math.min(prev + Math.random() * 15, 100);
       });
-    }, 100);
+    }, 50);
 
     const handleComplete = () => {
-      const elapsedTime = Date.now() - startTime;
-      const delayTime = Math.max(0, minimumDuration - elapsedTime);
-
       clearInterval(progressInterval);
       setLoadingProgress(100);
-
-      if (delayTime > 0) {
-        setTimeout(() => onLoadingComplete?.(), delayTime);
-      } else {
-        onLoadingComplete?.();
-      }
+      setTimeout(() => onLoadingComplete?.(), 300);
     };
 
     const handlePageLoad = () => {
@@ -66,14 +57,14 @@ export default function Preloader({
         handleComplete();
         clearInterval(checkProgress);
       }
-    }, 100);
+    }, 50);
 
     return () => {
       clearInterval(progressInterval);
       clearInterval(checkProgress);
       window.removeEventListener("load", handlePageLoad);
     };
-  }, [onLoadingComplete, minimumDuration, loadingProgress]);
+  }, [onLoadingComplete, loadingProgress]);
 
   return (
     <motion.div
