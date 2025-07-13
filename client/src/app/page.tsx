@@ -26,7 +26,7 @@ const LoadingSkeleton = ({ className = "" }) => (
   </div>
 );
 
-const AnimatedSection = ({ children, className = "", delay = 0 }) => {
+const AnimatedSection = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-50px", amount: 0.3 });
 
@@ -43,7 +43,7 @@ const AnimatedSection = ({ children, className = "", delay = 0 }) => {
   );
 };
 
-const StaggeredContainer = ({ children, className = "", delay = 0 }) => {
+const StaggeredContainer = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-50px", amount: 0.2 });
 
@@ -60,7 +60,7 @@ const StaggeredContainer = ({ children, className = "", delay = 0 }) => {
   );
 };
 
-const StaggeredChild = ({ children, className = "" }) => (
+const StaggeredChild = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
@@ -73,7 +73,7 @@ const StaggeredChild = ({ children, className = "" }) => (
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const gradientRef = useRef(null);
+  const gradientRef = useRef<HTMLDivElement | null>(null);
 
   const handleLoadingComplete = () => setIsLoading(false);
 
