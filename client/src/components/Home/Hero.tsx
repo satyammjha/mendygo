@@ -127,7 +127,7 @@ export default function Hero() {
                         className="mb-6 sm:mb-8"
                     >
                         <motion.span
-                            className="inline-flex items-center overflow-hidden rounded-full border border-gray-200/50 bg-white/80 backdrop-blur-xl shadow-lg hover:shadow-xl hover:shadow-[#abff02]/10 transition-all duration-300 group cursor-pointer dark:border-white/20 dark:bg-black/60 dark:hover:shadow-[#abff02]/20"
+                            className="inline-flex items-center overflow-hidden rounded-full border border-gray-200/50 backdrop-blur-xl shadow-lg hover:shadow-xl hover:shadow-[#abff02]/10 transition-all duration-300 group cursor-pointer dark:border-white/20 dark:bg-black/60 dark:hover:shadow-[#abff02]/20"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >

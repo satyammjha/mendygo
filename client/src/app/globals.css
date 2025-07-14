@@ -115,3 +115,10 @@
     @apply border-border outline-ring/50;
   }
 }
+
+html {
+  background: #fff; 
+}
+html.dark {
+  background: #000;  
+}

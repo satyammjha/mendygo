@@ -76,8 +76,8 @@ export default function Preloader({
         transition: { duration: 0.6, ease: "easeInOut" },
       }}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black"
+
     >
-      {/* Glow ring animation */}
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: [0, 1.2, 1], opacity: [0, 0.3, 0] }}
@@ -96,7 +96,6 @@ export default function Preloader({
         className="absolute w-[500px] h-[500px] border border-white/10 rounded-full"
       />
 
-      {/* Logo with floating animation */}
       <motion.div
         initial={{ scale: 0, rotate: -180 }}
         animate={{
@@ -124,7 +123,8 @@ export default function Preloader({
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="rounded-full p-4 bg-black/50 backdrop-blur-sm border border-white/10"
+          className="rounded-full p-4 bg-white/50 dark:bg-black/50 backdrop-blur-sm border border-black/10 dark:border-white/10"
+
         >
           <Image
             src={logo}
@@ -137,7 +137,6 @@ export default function Preloader({
         </motion.div>
       </motion.div>
 
-      {/* Floating particles */}
       {particles.map((particle, i) => (
         <motion.div
           key={i}

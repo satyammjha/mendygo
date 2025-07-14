@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Figtree } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/context/ThemeContext";
+import { ThemeProvider } from "next-themes";
 import { MyNavbar } from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import { Analytics } from "@vercel/analytics/next"
@@ -63,9 +63,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} ${figtree.variable} antialiased`}>
-        <ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
           <MyNavbar />
           {children}
           <Footer />

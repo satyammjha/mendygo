@@ -1,4 +1,3 @@
-// contexts/ThemeContext.tsx
 "use client";
 
 import { createContext, useState, useEffect, useContext } from "react";

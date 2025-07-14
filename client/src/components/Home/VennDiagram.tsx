@@ -65,8 +65,8 @@ export default function VennDiagram() {
                         r={outerCircleRadius}
                         fill="none"
                         stroke="#0E4732"
+                        className="opacity-30 dark:stroke-[#abff02]"
                         strokeWidth="2"
-                        className="opacity-30"
                         filter="url(#glow)"
                     />
                     {labels.slice(1).map((label, index) => {
@@ -97,9 +97,9 @@ export default function VennDiagram() {
                                     transform={`rotate(${index * 60 + 20}, ${ovalCenterX}, ${ovalCenterY})`}
                                     fill="none"
                                     stroke="#0E4732"
+                                    className="dark:stroke-[#abff02] transition-all duration-300 pointer-events-none"
                                     strokeWidth={hoverIndex === index ? 3 : 2}
                                     strokeOpacity={hoverIndex === index ? 0.9 : 0.5}
-                                    className={`transition-all duration-300 pointer-events-none ${hoverIndex === index ? "animate-pulseBorder" : ""}`}
                                     filter="url(#glow)"
                                 />
 
@@ -112,7 +112,7 @@ export default function VennDiagram() {
                                 >
                                     <div className="flex items-center justify-center w-full h-full">
                                         <div className="flex flex-col items-center justify-center text-sm text-center text-current font-medium gap-1 px-2 py-1 rounded-md shadow-sm">
-                                            <span className="text-xs opacity-70 hidden lg:block">{`0${(label.id % 9)}`}</span>
+
                                             <div className="flex items-center justify-center gap-1">
                                                 <IconComponent type={index % 6} />
                                                 <span>{label.title}</span>
@@ -140,8 +140,8 @@ export default function VennDiagram() {
                         r={centralCircleRadius}
                         fill="none"
                         stroke="#0E4732"
+                        className="dark:stroke-[#abff02] transition-all duration-300 pointer-events-none"
                         strokeWidth={hoverIndex === -1 ? 3 : 2}
-                        className={`transition-all duration-300 pointer-events-none ${hoverIndex === -1 ? "animate-pulse" : ""}`}
                         filter="url(#glow)"
                     />
 

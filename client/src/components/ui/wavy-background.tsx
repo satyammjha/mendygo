@@ -133,7 +133,6 @@ export const WavyBackground = ({
     // Clear the canvas first
     ctx.clearRect(0, 0, w, h);
 
-    // Set background - pure white for light mode, pure black for dark mode
     ctx.fillStyle = backgroundFill || (isDarkMode ? "#000000" : "#ffffff");
     ctx.globalAlpha = 1;
     ctx.fillRect(0, 0, w, h);

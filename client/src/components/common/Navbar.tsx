@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { Sun, Moon } from "lucide-react";
 import { useState } from "react";
-import { useTheme } from "@/context/ThemeContext";
+import { useTheme } from "next-themes";
 
 export function MyNavbar() {
     const navItems = [
@@ -49,11 +49,11 @@ export function MyNavbar() {
     ];
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const { toggleTheme } = useTheme();
+    const { theme, setTheme } = useTheme();
     const ThemeToggleButton = ({ className = "" }: { className?: string }) => {
         return (
             <button
-                onClick={toggleTheme}
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 aria-label="Toggle dark mode"
                 className={`
                     cursor-pointer

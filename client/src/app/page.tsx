@@ -22,7 +22,7 @@ const Timeline = lazy(() => import("@/components/Home/Timeline"));
 
 const LoadingSkeleton = ({ className = "" }) => (
   <div className={`animate-pulse ${className}`}>
-    <div className="bg-gray-300 dark:bg-black rounded-lg h-full w-full"></div>
+    <div className="bg-white dark:bg-black rounded-lg h-full w-full"></div>
   </div>
 );
 
@@ -104,7 +104,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative overflow-hidden min-h-screen dark:bg-black bg-white dark:text-white text-black">
+    <div className="relative overflow-hidden min-h-screen dark:bg-black dark:text-white text-black">
       {!isHydrated ? (
         <div className="fixed inset-0 z-50 bg-black" />
       ) : (

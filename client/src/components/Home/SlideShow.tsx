@@ -1,11 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 import Hero from '../../assets/hmc.svg';
-import Dayco from '../../assets/dayco.webp';
-import Tata from '../../assets/tata.svg';
+import Dayco from '../../assets/dayco.png';
+import Tata from '../../assets/tata.webp';
 import Smh from '../../assets/smh.webp';
 import Maruti from '../../assets/maruti.webp';
-import Marelli from '../../assets/marelli.svg';
+import Marelli from '../../assets/marelli.png';
 
 const companies = [
   { name: 'SKH Group', image: Smh },
