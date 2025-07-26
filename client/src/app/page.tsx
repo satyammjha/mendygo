@@ -234,14 +234,14 @@ export default function Home() {
                 delay={0.1}
               >
                 <Badge className="backdrop-blur-md bg-[#abff02]/20 border border-white/20 text-black dark:text-white mx-auto mb-4 hover:shadow-lg hover:shadow-[#abff02]/30 transition">
-                  <span className="text-sm font-semibold">Our Partners</span>
+                  <span className="text-sm font-semibold">Our Clients</span>
                 </Badge>
 
                 <h1 className="text-2xl md:text-4xl font-bold mt-2">
                   Trusted by the Best in the Industry
                 </h1>
                 <p className="mt-2 text-black dark:text-white max-w-xl mx-auto">
-                  We are proud to be the automation partner of top-tier automotive and tech companies across the globe.
+                 We are proud to serve as the automation provider for top-tier automotive and tech clients across the globe.
                 </p>
 
                 <CompanySlideshow />

@@ -17,31 +17,41 @@ const companies = [
 ];
 
 const CompanySlider = () => {
-  const allLogos = [...companies, ...companies];
+  const allLogos = [...companies, ...companies]; // Repeat for infinite loop
 
   return (
     <div className="overflow-hidden w-full py-8 bg-white dark:bg-black">
-      <div className="animate-scroll flex whitespace-nowrap gap-16">
-        {allLogos.map((company, i) => (
-          <div key={i} className="flex flex-col items-center min-w-[120px]">
-            <div className="relative w-20 h-20 mb-2">
-              <Image
-                src={company.image}
-                alt={company.name}
-                fill
-                className="object-contain"
-              />
+      <div className="scroll-wrapper">
+        <div className="animate-scroll flex whitespace-nowrap gap-16">
+          {allLogos.map((company, i) => (
+            <div key={i} className="flex flex-col items-center min-w-[120px]">
+              <div className="relative w-20 h-20 mb-2">
+                <Image
+                  src={company.image}
+                  alt={company.name}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <span className="text-sm text-gray-800 dark:text-white font-medium mt-4">
+                {company.name}
+              </span>
             </div>
-            <span className="text-sm text-gray-800 dark:text-white font-medium mt-4">
-              {company.name}
-            </span>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       <style jsx>{`
+        .scroll-wrapper {
+          overflow: hidden;
+        }
+
         .animate-scroll {
-          animation: scroll-left 30s linear infinite;
+          animation: scroll-left 15s linear infinite; /* Increased speed (was 30s) */
+        }
+
+        .scroll-wrapper:hover .animate-scroll {
+          animation-play-state: paused; /* Pause on hover */
         }
 
         @keyframes scroll-left {
