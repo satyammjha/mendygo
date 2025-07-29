@@ -23,13 +23,18 @@ export default function Hero() {
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
+    const fadeUp = (delay = 0.1) => ({
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.6, delay },
+    });
+
     return (
         <WavyBackground containerClassName="relative">
             <section
                 ref={ref}
                 className="relative flex flex-col min-h-[100dvh] items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
             >
-                {/* Radial Light Hover Effect */}
                 <motion.div
                     className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none z-10"
                     style={{
@@ -39,12 +44,7 @@ export default function Hero() {
 
                 <div className="relative z-20 w-full max-w-7xl flex flex-col items-center justify-center text-center mx-auto px-4">
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="mb-6 sm:mb-8"
-                    >
+                    <motion.div {...fadeUp(0.1)} className="mb-6 sm:mb-8 mt-4">
                         <motion.span
                             className="inline-flex items-center overflow-hidden rounded-full border border-gray-200/50 backdrop-blur-xl shadow-lg hover:shadow-xl hover:shadow-[#abff02]/10 transition-all duration-300 group cursor-pointer dark:border-white/20 dark:bg-black/60 dark:hover:shadow-[#abff02]/20"
                             whileHover={{ scale: 1.05 }}
@@ -60,7 +60,6 @@ export default function Hero() {
                         </motion.span>
                     </motion.div>
 
-                    {/* Title */}
                     <h1 className="text-4xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.1] tracking-tight">
                         {"AI that adapts.".split(" ").map((word, index) => (
                             <motion.span
@@ -68,8 +67,8 @@ export default function Hero() {
                                 initial={{ opacity: 0, y: 100, rotateX: -90 }}
                                 animate={{ opacity: 1, y: 0, rotateX: 0 }}
                                 transition={{
-                                    duration: 1.2,
-                                    delay: 0.3 + index * 0.3,
+                                    duration: 0.9,
+                                    delay: 0.2 + index * 0.2,
                                     ease: [0.22, 1, 0.36, 1],
                                 }}
                                 className="inline-block mr-2 sm:mr-3 md:mr-4 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent drop-shadow-sm dark:from-white dark:via-white dark:to-gray-200 dark:drop-shadow-lg"
@@ -79,51 +78,46 @@ export default function Hero() {
                         ))}
                     </h1>
 
-                    {/* Subtitle with logo */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 1.4 }}
-                        className="mt-4 xl:mt-10"
-                    >
+
+
+                    <motion.div {...fadeUp(0.9)} className="mt-4 xl:mt-10">
                         <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-black/80 dark:text-gray-200 flex flex-wrap justify-center items-center gap-4">
                             <span>Join the future with</span>
-                            <motion.span whileHover={{ scale: 1.05 }}>
+                            <span className="flex items-center gap-2">
                                 <Image
                                     src={mendygoBlack}
                                     alt="Mendygo Logo"
-                                    className="object-contain w-auto lg:mt-8 lg:h-20 h-18 dark:hidden"
+                                    className="object-contain lg:h-20 h-18 dark:hidden"
                                     priority
                                 />
                                 <Image
                                     src={mendygo}
                                     alt="Mendygo Logo"
-                                    className="object-contain w-auto lg:mt-[14px] lg:h-14 h-16 hidden dark:block"
+                                    className="object-contain lg:h-14 h-16 hidden dark:block"
                                     priority
                                 />
-                            </motion.span>
+                            </span>
                         </h2>
                     </motion.div>
 
-                    {/* Description */}
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 1.8 }}
+                        {...fadeUp(1.2)}
                         className="mt-4 sm:mt-6 mx-auto max-w-[90%] text-base sm:text-lg md:text-xl text-black/80 leading-relaxed dark:text-gray-300 font-semibold mb-6 xl:mb-8"
                     >
                         Transform your business with intelligent automation that learns,
                         adapts, and scales with your needs.
                     </motion.p>
 
-                    {/* CTA Buttons */}
-                    <GlassmorphedButtons />
-
-                    {/* Highlights */}
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.6, delay: 2.6 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 1.5 }}
+                    >
+                        <GlassmorphedButtons />
+                    </motion.div>
+
+                    <motion.div
+                        {...fadeUp(1.8)}
                         className="mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-sm text-gray-600 dark:text-gray-400"
                     >
                         <div className="flex items-center gap-2">
@@ -137,26 +131,6 @@ export default function Hero() {
                         </div>
                     </motion.div>
                 </div>
-
-                {/* Scroll Down Indicator */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 3 }}
-                    className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block"
-                >
-                    <motion.div
-                        animate={{ y: [0, 10, 0] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="w-6 h-10 border-2 border-gray-400/60 rounded-full flex justify-center dark:border-white/40"
-                    >
-                        <motion.div
-                            animate={{ y: [0, 16, 0] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                            className="w-1 h-3 bg-[#abff02] rounded-full mt-2"
-                        />
-                    </motion.div>
-                </motion.div>
             </section>
         </WavyBackground>
     );

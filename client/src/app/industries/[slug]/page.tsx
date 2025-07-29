@@ -17,15 +17,17 @@ export default function IndustryPage() {
         <main className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
             <div className="w-full h-[65vh] relative aspect-[16/9]">
                 <Image
-                    src={content.image}       
+                    src={content.image}
                     alt={content.title}
-                    fill     
+                    fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw,
-                 (max-width: 1280px) 90vw,
-                 1280px"
+           (max-width: 1280px) 90vw,
+           1280px"
                 />
+                <div className="absolute top-0 left-0 w-full h-25 bg-gradient-to-b from-white/100 to-transparent z-10" />
             </div>
+
 
             <section className="text-center mb-12 mt-10 px-4">
                 <h1 className="text-3xl md:text-4xl font-bold mb-4">

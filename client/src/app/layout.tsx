@@ -5,6 +5,8 @@ import { ThemeProvider } from "next-themes";
 import { MyNavbar } from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import { Analytics } from "@vercel/analytics/next"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });

@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
 export const TextHoverEffect = ({
@@ -15,21 +15,28 @@ export const TextHoverEffect = ({
   const [hovered, setHovered] = useState(false);
   const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
   const { theme } = useTheme();
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    if (svgRef.current && cursor.x !== null && cursor.y !== null) {
-      const svgRect = svgRef.current.getBoundingClientRect();
-      const cxPercentage = ((cursor.x - svgRect.left) / svgRect.width) * 100;
-      const cyPercentage = ((cursor.y - svgRect.top) / svgRect.height) * 100;
-      setMaskPosition({
-        cx: `${cxPercentage}%`,
-        cy: `${cyPercentage}%`,
-      });
-    }
-  }, [cursor]);
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!svgRef.current || !hasMounted || cursor.x === 0) return;
+    const svgRect = svgRef.current.getBoundingClientRect();
+    const cxPercentage = ((cursor.x - svgRect.left) / svgRect.width) * 100;
+    const cyPercentage = ((cursor.y - svgRect.top) / svgRect.height) * 100;
+    setMaskPosition({
+      cx: `${cxPercentage}%`,
+      cy: `${cyPercentage}%`,
+    });
+  }, [cursor, hasMounted]);
+
+  if (!hasMounted) return null; // Prevent SSR mismatch
 
   const outlineStroke = theme === "light" ? "#1f2937" : "#e5e7eb";
-  const dropShadow = theme === "light" ? "drop-shadow(1px 1px 1px rgba(0,0,0,0.2))" : undefined;
+  const dropShadow =
+    theme === "light" ? "drop-shadow(1px 1px 1px rgba(0,0,0,0.2))" : undefined;
 
   return (
     <svg
@@ -44,13 +51,7 @@ export const TextHoverEffect = ({
       className="select-none"
     >
       <defs>
-        <linearGradient
-          id="textGradient"
-          gradientUnits="userSpaceOnUse"
-          cx="50%"
-          cy="50%"
-          r="25%"
-        >
+        <linearGradient id="textGradient" gradientUnits="userSpaceOnUse" cx="50%" cy="50%" r="25%">
           {hovered && (
             <>
               <stop offset="0%" stopColor="#eab308" />
@@ -62,26 +63,13 @@ export const TextHoverEffect = ({
           )}
         </linearGradient>
 
-        <motion.radialGradient
-          id="revealMask"
-          gradientUnits="userSpaceOnUse"
-          r="20%"
-          initial={{ cx: "50%", cy: "50%" }}
-          animate={maskPosition}
-          transition={{ duration: duration ?? 0, ease: "easeOut" }}
-        >
+        <radialGradient id="revealMask" gradientUnits="userSpaceOnUse" r="20%" cx={maskPosition.cx} cy={maskPosition.cy}>
           <stop offset="0%" stopColor="white" />
           <stop offset="100%" stopColor="black" />
-        </motion.radialGradient>
+        </radialGradient>
 
         <mask id="textMask">
-          <rect
-            x="0"
-            y="0"
-            width="100%"
-            height="100%"
-            fill="url(#revealMask)"
-          />
+          <rect x="0" y="0" width="100%" height="100%" fill="url(#revealMask)" />
         </mask>
       </defs>
 
@@ -109,14 +97,8 @@ export const TextHoverEffect = ({
         strokeWidth="0.3"
         className="fill-transparent stroke-neutral-200 dark:stroke-neutral-800 font-[helvetica] text-7xl font-bold"
         initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
-        animate={{
-          strokeDashoffset: 0,
-          strokeDasharray: 1000,
-        }}
-        transition={{
-          duration: 4,
-          ease: "easeInOut",
-        }}
+        animate={{ strokeDashoffset: 0 }}
+        transition={{ duration: 4, ease: "easeInOut" }}
       >
         {text}
       </motion.text>
@@ -130,9 +112,7 @@ export const TextHoverEffect = ({
         strokeWidth="0.6"
         mask="url(#textMask)"
         className="fill-transparent font-[helvetica] text-7xl font-bold"
-        style={{
-          filter: dropShadow,
-        }}
+        style={{ filter: dropShadow }}
       >
         {text}
       </text>

@@ -7,6 +7,7 @@ import Image from "next/image";
 import DashboardDark from '../assets/dashboard-dark.webp';
 import DashboardLight from '../assets/dashboard-light.webp';
 import CompanySlideshow from "@/components/Home/SlideShow";
+import IndustrySlideshow from "@/components/Home/IndustriesSlideshow";
 
 const CountdownCard = lazy(() => import("@/components/Home/CountdownCard"));
 const Faq = lazy(() => import("@/components/Home/Faq"));
@@ -26,11 +27,10 @@ export default function Home() {
       <div>
         <Hero />
 
-        <div className="p-4 md:p-8">
-          <TextHoverEffect text="mendygo" />
-        </div>
+        <IndustrySlideshow />
 
-        <div className="px-4 sm:px-6 pb-0 flex justify-center relative">
+
+        <div className="px-4 sm:px-6 pb-0 flex justify-center relative mt-24">
           <div className="w-full sm:w-[90%] md:w-[80%] mb-16 h-full relative rounded-t-lg overflow-hidden">
             <div className="relative w-full h-full">
               <Image
@@ -115,6 +115,9 @@ export default function Home() {
           </Suspense>
         </div>
 
+        <div className="p-4 md:p-8">
+          <TextHoverEffect text="mendygo" />
+        </div>
         <div>
           <Suspense>
             <SignUpForm />
