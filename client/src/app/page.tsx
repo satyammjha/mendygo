@@ -28,8 +28,6 @@ export default function Home() {
         <Hero />
 
         <IndustrySlideshow />
-
-
         <div className="px-4 sm:px-6 pb-0 flex justify-center relative mt-24">
           <div className="w-full sm:w-[90%] md:w-[80%] mb-16 h-full relative rounded-t-lg overflow-hidden">
             <div className="relative w-full h-full">

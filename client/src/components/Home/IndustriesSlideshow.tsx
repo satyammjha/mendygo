@@ -21,10 +21,10 @@ const IndustrySlideshow = () => {
     };
 
     return (
-        <div className="lg:w-[70%] w-[90%] h-full mx-auto">
+        <div className="w-full h-full mx-0">
             <Slider {...settings}>
                 {imageNames.map((img, index) => (
-                    <div key={index} className="relative w-full lg:h-[500px] h-[300px] overflow-hidden rounded-xl">
+                    <div key={index} className="relative w-full lg:h-[500px] h-[300px] overflow-hidden">
                         <Image
                             src={`/${img}`}
                             alt={`Slide ${index + 1}`}
