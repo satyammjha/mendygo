@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import Image from "next/image";
 
 const imageNames = [
-    "ind1.webp", "ind2.webp", "ind3.webp", "ind4.webp", "ind5.webp", "ind6.webp", "ind7.webp"
+    "ind1.png", "ind2.png", "ind3.png", "ind4.png", "ind5.png", "ind6.png", "ind7.png"
 ];
 
 const IndustrySlideshow = () => {
@@ -24,7 +24,7 @@ const IndustrySlideshow = () => {
         <div className="w-full h-full mx-0">
             <Slider {...settings}>
                 {imageNames.map((img, index) => (
-                    <div key={index} className="relative w-full lg:h-[500px] h-[300px] overflow-hidden">
+                    <div key={index} className="relative w-full h-full overflow-hidden">
                         <Image
                             src={`/${img}`}
                             alt={`Slide ${index + 1}`}

@@ -22,7 +22,6 @@ export const metadata: Metadata = {
   creator: "Mendygo",
   publisher: "Mendygo",
   viewport: "width=device-width, initial-scale=1.0",
-  themeColor: "#abff02",
   alternates: {
     canonical: "https://mendygo.com",
   },
