@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';                     // ⬅️  import
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { servicesContent, IndustrySlug } from '../../../data/industries';
 

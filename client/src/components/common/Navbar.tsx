@@ -30,6 +30,24 @@ export function MyNavbar() {
             }
         },
         {
+            name: "Products",
+            link: "/products/mendyview-ai-access-control",
+            dropdown: {
+                title: "Products",
+                links: [
+                    { href: "/products/mendyview-ai-access-control", label: "MendyView" },
+                    { href: "/products/mendysheets-digital-checksheets", label: "MendySheets" },
+                    { href: "/products/mendergy-energy-management-system", label: "Mendergy" },
+                    { href: "/products/smartooe-dashboard", label: "SmartOEE" },
+                    { href: "/products/mendygoverse-ar-vr-mr-platform", label: "MendygoVerse" },
+                    { href: "/products/mendyops-utility-monitoring-automation", label: "MendyOps" },
+                    { href: "/products/gotwinx-digital-twin-platform", label: "GoTwinX" },
+                    { href: "/products/thermendy-smart-climate-control", label: "Thermendy" },
+                    { href: "/products/mendyai-industrial-intelligence-engine", label: "MendyAI" }
+                ],
+            }
+        },
+        {
             name: "Industries",
             link: "/industries/pulp-fiber",
             dropdown: {
@@ -165,7 +183,6 @@ export function MyNavbar() {
     );
 }
 
-// Mobile Navigation Item Component
 const MobileNavItem = ({ item, onClose }: { item: any; onClose: () => void }) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -188,7 +205,7 @@ const MobileNavItem = ({ item, onClose }: { item: any; onClose: () => void }) =>
                                 key={idx}
                                 href={link.href}
                                 onClick={onClose}
-                                className="block text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                                className="block text-gray-600 dark:text-gray-400 hover:bg-red-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
                             >
                                 {link.label}
                             </a>

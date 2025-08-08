@@ -24,7 +24,7 @@ const IndustrySlideshow = () => {
         <div className="w-full h-full mx-0">
             <Slider {...settings}>
                 {imageNames.map((img, index) => (
-                    <div key={index} className="relative w-full h-full overflow-hidden">
+                    <div className="relative w-full h-auto aspect-[16/9] overflow-hidden">
                         <Image
                             src={`/${img}`}
                             alt={`Slide ${index + 1}`}
@@ -32,8 +32,8 @@ const IndustrySlideshow = () => {
                             className="object-cover"
                             priority={index === 0}
                         />
-                        <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black/40 to-transparent z-10" />
                     </div>
+
                 ))}
             </Slider>
         </div>
