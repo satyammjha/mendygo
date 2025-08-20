@@ -8,7 +8,7 @@ const products = [
         subtitle: "AI Web-Based Access Control System",
         description:
             "Enhance site security and safety compliance with AI-powered facial recognition and PPE detection.",
-        image: "ind1.png",
+        image: "ind2.png",
     },
     {
         id: 2,
@@ -16,7 +16,7 @@ const products = [
         subtitle: "Digital Checksheets",
         description:
             "Digitize your quality inspections with real-time data capture and IoT integration.",
-        image: "ind2.png",
+        image: "ind1.png",
     },
     {
         id: 3,
@@ -31,7 +31,7 @@ const products = [
         name: "SmartOEE",
         subtitle: "OEE Dashboard",
         description: "Track efficiency, quality, and equipment availability in real time.",
-        image: "ind4.png",
+        image: "ind5.png",
     },
     {
         id: 5,
@@ -39,7 +39,7 @@ const products = [
         subtitle: "AR/VR/MR Platform",
         description:
             "Transform industrial training and maintenance with immersive AR/VR/MR solutions.",
-        image: "ind5.png",
+        image: "ind7.png",
     },
     {
         id: 6,
@@ -55,7 +55,7 @@ const products = [
         subtitle: "Digital Twin Platform",
         description:
             "Visualize, simulate, and optimize industrial operations with MendyLive.",
-        image: "ind7.png",
+        image: "",
     },
     {
         id: 8,
@@ -63,7 +63,7 @@ const products = [
         subtitle: "Smart Climate Control",
         description:
             "AI-driven climate control for industrial spaces, managing temperature, humidity, and airflow.",
-        image: "ind1.png",
+        image: "ind4.png",
     },
     {
         id: 9,
@@ -71,7 +71,7 @@ const products = [
         subtitle: "Industrial Intelligence Engine",
         description:
             "MendyAI turns raw IIoT data into smart, real-time insights using adaptive machine learning.",
-        image: "ind2.png",
+        image: "",
     },
 ];
 const IndustrySlideshow = () => {
