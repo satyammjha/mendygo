@@ -65,6 +65,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1508534101075098"
+     crossorigin="anonymous" strategy="afterInteractive"></script>
       <body className={`${geistSans.variable} ${geistMono.variable} ${figtree.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
