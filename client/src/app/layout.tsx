@@ -65,8 +65,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1508534101075098"
-     crossorigin="anonymous" strategy="afterInteractive"></script>
+  
       <body className={`${geistSans.variable} ${geistMono.variable} ${figtree.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
@@ -78,6 +77,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <Footer />
         </ThemeProvider>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1508534101075098"
+     crossorigin="anonymous" strategy="afterInteractive"></script>
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YLHBGST7H3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YLHBGST7H3');
+</script>
       </body>
     </html>
   );
