@@ -15,6 +15,9 @@ const figtree = Figtree({ subsets: ["latin"], variable: "--font-figtree", displa
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mendygo.com"),
+   other: {
+    "google-adsense-account": "ca-pub-1508534101075098",
+  },
   title: "Mendygo – AI That Adapts",
   description: "Lead generation for modern businesses powered by adaptive AI.",
   applicationName: "Mendygo",
@@ -76,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} ${figtree.variable} antialiased`}>
+        
         {/* Google Analytics */}
         <Script
           async
@@ -97,6 +101,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
 
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1508534101075098"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -112,3 +124,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
