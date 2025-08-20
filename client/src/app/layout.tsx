@@ -18,7 +18,16 @@ export const metadata: Metadata = {
   title: "Mendygo – AI That Adapts",
   description: "Lead generation for modern businesses powered by adaptive AI.",
   applicationName: "Mendygo",
-  keywords: ["AI", "Mendygo", "automation", "lead generation", "smart monitoring", "B2B", "AI systems", "analytics"],
+  keywords: [
+    "AI",
+    "Mendygo",
+    "automation",
+    "lead generation",
+    "smart monitoring",
+    "B2B",
+    "AI systems",
+    "analytics",
+  ],
   authors: [{ name: "Mendygo", url: "https://mendygo.com" }],
   creator: "Mendygo",
   publisher: "Mendygo",
@@ -28,7 +37,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Mendygo – AI That Adapts",
-    description: "Lead generation and smart monitoring for modern businesses powered by adaptive AI.",
+    description:
+      "Lead generation and smart monitoring for modern businesses powered by adaptive AI.",
     url: "https://mendygo.com",
     siteName: "Mendygo",
     images: [
@@ -45,7 +55,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Mendygo – AI That Adapts",
-    description: "Lead generation and smart monitoring for modern businesses powered by adaptive AI.",
+    description:
+      "Lead generation and smart monitoring for modern businesses powered by adaptive AI.",
     images: ["https://mendygo.com/og-image.jpg"],
     site: "@MendygoSocial",
     creator: "@MendygoSocial",
@@ -64,7 +75,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${figtree.variable} antialiased`}>
         {/* Google Analytics */}
         <Script
           async
@@ -85,8 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${figtree.variable} antialiased`}>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
